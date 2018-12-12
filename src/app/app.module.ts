@@ -7,6 +7,15 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
+import { DevicesModule } from './parentComponents/devices/devices.module';
+import { EquipmentsModule } from './parentComponents/equipments/equipments.module';
+import { MachinesModule } from './parentComponents/machines/machines.module';
+import { NotificationsModule } from './parentComponents/notifications/notifications.module';
+import { PlantsModule } from './parentComponents/plants/plants.module';
+import { TenantModule } from './parentComponents/tenant/tenant.module';
+import { UsersModule } from './parentComponents/users/users.module';
+
+
 
 import { AppComponent } from './app.component';
 
@@ -27,6 +36,13 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     FormsModule,
     HttpModule,
     ComponentsModule,
+    DevicesModule,
+    EquipmentsModule,
+    MachinesModule,
+    NotificationsModule,
+    PlantsModule,
+    TenantModule,
+    UsersModule,
     RouterModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
