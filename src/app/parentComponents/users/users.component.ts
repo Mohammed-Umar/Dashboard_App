@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
+  public activeScreen = 'list';
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public changeScreen(screen) {
+    this.activeScreen = screen;
   }
 
 }

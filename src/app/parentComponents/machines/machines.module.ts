@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MachinesComponent } from './machines.component'
-import { AddNewComponent } from './addnew/addnew.component'
-import { ListComponent } from './list/list.component'
-import { UpdateComponent } from './update/update.component'
+import { AddNewMachineComponent } from './add-new-machine/add-new-machine.component'
+import { MachinesListComponent } from './machines-list/machines-list.component'
+import { UpdateMachineComponent } from './update-machine/update-machine.component'
 
 import {
   MatButtonModule,
@@ -27,9 +27,9 @@ import {
   ],
   declarations: [
     MachinesComponent,
-    AddNewComponent,
-    ListComponent,
-    UpdateComponent
+    AddNewMachineComponent,
+    MachinesListComponent,
+    UpdateMachineComponent
   ]
 })
 export class MachinesModule { }

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { NotificationsComponent } from './notifications.component'
-import { AddNewComponent } from './addnew/addnew.component'
-import { ListComponent } from './list/list.component'
-import { UpdateComponent } from './update/update.component'
+import { AddNewNotificationComponent } from './add-new-notification/add-new-notification.component'
+import { NotificationsListComponent } from './notifications-list/notifications-list.component'
+import { UpdateNotificationComponent } from './update-notification/update-notification.component'
 
 import {
   MatButtonModule,
@@ -26,9 +26,9 @@ import {
     MatSelectModule,
   ],
   declarations: [
-    AddNewComponent,
-    ListComponent,
-    UpdateComponent,
+    AddNewNotificationComponent,
+    NotificationsListComponent,
+    UpdateNotificationComponent,
     NotificationsComponent
   ]
 })

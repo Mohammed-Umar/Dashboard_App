@@ -12,14 +12,13 @@ import { EquipmentsModule } from './parentComponents/equipments/equipments.modul
 import { MachinesModule } from './parentComponents/machines/machines.module';
 import { NotificationsModule } from './parentComponents/notifications/notifications.module';
 import { PlantsModule } from './parentComponents/plants/plants.module';
-import { TenantModule } from './parentComponents/tenant/tenant.module';
+import { TenantModule } from './parentComponents/tenants/tenant.module';
 import { UsersModule } from './parentComponents/users/users.module';
-
-
+import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
 
 import { AppComponent } from './app.component';
 
-import { TenantsComponent } from './parentComponents/tenant/tenant.component';
+import { TenantsComponent } from './parentComponents/tenants/tenant.component';
 import { UsersComponent } from './parentComponents/users/users.component';
 import { PlantsComponent } from './parentComponents/plants/plants.component';
 import { MachinesComponent } from './parentComponents/machines/machines.component';
@@ -43,6 +42,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     PlantsModule,
     TenantModule,
     UsersModule,
+    AdminLayoutModule,
     RouterModule,
     AppRoutingModule,
     AgmCoreModule.forRoot({
@@ -51,7 +51,6 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   ],
   declarations: [
     AppComponent,
-    AdminLayoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

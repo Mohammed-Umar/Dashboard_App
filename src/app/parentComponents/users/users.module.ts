@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { UsersComponent } from './users.component'
-import { AddNewComponent } from './addnew/addnew.component'
-import { ListComponent } from './list/list.component'
-import { UpdateComponent } from './update/update.component'
+import { AddNewUserComponent } from './add-new-user/add-new-user.component'
+import { UsersListComponent } from './users-list/users-list.component'
+import { UpdateUserComponent } from './update-user/update-user.component'
 
 import {
   MatButtonModule,
@@ -26,9 +26,9 @@ import {
     MatSelectModule,
   ],
   declarations: [
-    AddNewComponent,
-    ListComponent,
-    UpdateComponent,
+    AddNewUserComponent,
+    UsersListComponent,
+    UpdateUserComponent,
     UsersComponent
   ]
 })
