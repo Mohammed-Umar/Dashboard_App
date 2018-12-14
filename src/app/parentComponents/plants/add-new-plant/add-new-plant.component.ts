@@ -10,7 +10,7 @@ export class AddNewPlantComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newPlant: Object = {};
+  newPlant: any = {};
   tendentIds;
 
   constructor(private service: PlantsService) { }

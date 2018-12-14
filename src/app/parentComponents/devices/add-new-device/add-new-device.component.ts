@@ -10,7 +10,7 @@ export class AddNewDeviceComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newDevice: Object = {};
+  newDevice: any = {};
   tendentIds;
   plantIds;
   machineIds;

@@ -35,7 +35,13 @@
                         {{ machine.additional_info }}
                       </td>
                       <td>
-                        <a (click)="moveTo('update', machine)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        {{ machine.tenant_id }}
+                      </td>                      
+                      <td>
+                        {{ machine.plant_id }}
+                      </td>
+                      <td>
+                        <a (click)="update('update', machine)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
                         Update                        
                         </a>
                       </td>

@@ -29,7 +29,7 @@ export class UpdateMachineComponent implements OnInit {
   }
 
   private getPlantIds() {
-    this.plantIds = this.service.getPlantIds;
+    this.plantIds = this.service.getPlantIds();
   }
 
   public moveTo(screen) {

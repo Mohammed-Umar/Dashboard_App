@@ -10,7 +10,7 @@ export class AddNewTenantComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newTenant: Object = {};
+  newTenant: any = {};
 
   constructor(private service: TenantsService) { }
 
@@ -27,7 +27,7 @@ export class AddNewTenantComponent implements OnInit {
 
   onSubmit() {
     this.addTenant(this.newTenant);
-    console.log(this.service.tenants);
+    console.log(this.service.list);
     this.moveTo('list');
   }
 

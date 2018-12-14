@@ -5,31 +5,46 @@ import { Injectable } from '@angular/core';
 })
 export class TenantsService {
 
-  tenants = [
-    { 'id': '1', 'name': 'Abc Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '2', 'name': 'Bcd Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '3', 'name': 'Efg Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '4', 'name': 'Gfe Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '5', 'name': 'Cdd Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '6', 'name': 'Bdd Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-    { 'id': '7', 'name': 'Acc Pvt. Ltd', 'description': 'Some discription', 'additional_info': 'additional information about this tenant'},
-  ];
+  public list;
 
-  constructor() { }
+  public headers = ['Id', 'Name', 'Description', 'Additional Info'];
+
+  constructor() {
+    this.constructArrayOfPlants();
+   }
+
+  constructArrayOfPlants() {
+    const array = [];
+    for (let i = 0; i < 10; i++) {
+      array[i] = this.constructObject(i + 1);
+    }
+    this.list = array;
+    console.log(this.list);
+  }
+
+  constructObject(id) {
+    return {
+      'id': id,
+      'name': 'Plant' + ' ' + id,
+      'description': 'Some discription',
+      'additional_info': 'additional information about this plant',
+      'app_object_id': '232'
+    }
+  }
 
   public getIds() {
-    return this.tenants.map(obj => obj.id);
+    return this.list.map(obj => obj.id);
   }
 
   public addNew(tenant) {
-    const length = this.tenants.length;
+    const length = this.list.length;
     tenant.id = length + 1;
-    this.tenants.push(tenant);
+    this.list.push(tenant);
   }
 
   public update(tenant) {
-    const updateItem = this.tenants.find(obj => obj.id === tenant.id);
-    const index = this.tenants.indexOf(updateItem);
-    this.tenants[index] = tenant;
+    const updateItem = this.list.find(obj => obj.id === tenant.id);
+    const index = this.list.indexOf(updateItem);
+    this.list[index] = tenant;
   }
 }

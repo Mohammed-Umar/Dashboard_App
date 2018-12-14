@@ -8,6 +8,8 @@ export class DevicesService {
 
   public list;
 
+  public headers = ['Id', 'Name', 'Description', 'Additional Info', 'Tenant ID', 'Plant ID', 'Machine ID', 'Equipment ID'];
+
   constructor(private tenantService: TenantsService) {
     this.constructArrayOfPlants();
    }
@@ -28,11 +30,15 @@ export class DevicesService {
       'description': 'Some discription',
       'additional_info': 'additional information about this Device',
       'app_object_id': '232',
-      'tenant_id': id,
-      'plant_id': id,
-      'machine_id': id,
-      'equipment_id': id
+      'tenant_id': this._getRandomNum(1, 10),
+      'plant_id': this._getRandomNum(1, 10),
+      'machine_id': this._getRandomNum(1, 10),
+      'equipment_id': this._getRandomNum(1, 10)
     }
+  }
+
+  private _getRandomNum(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
   }
 
   public getIds() {

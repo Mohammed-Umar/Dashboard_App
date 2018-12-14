@@ -6,27 +6,9 @@ import { TenantsService } from '../tenants/tenants.service';
 })
 export class PlantsService {
 
-  plants = [
-    {
-      'id': '1',
-      'name': 'Plant 1',
-      'description': 'Some discription',
-      'additional_info': 'additional information about this plant',
-      'app_object_id': '232',
-      'tenant_id': '2'
-    },
-  ];
-
   public list;
 
-  plant = {
-    'id': '1',
-    'name': 'Plant 1',
-    'description': 'Some discription',
-    'additional_info': 'additional information about this plant',
-    'app_object_id': '232',
-    'tenant_id': '2'
-  }
+  public headers = ['Id', 'Name', 'Description', 'Additional Info', 'Tenant ID'];
 
   constructor(private tenantService: TenantsService) {
     this.constructArrayOfPlants();
@@ -48,8 +30,12 @@ export class PlantsService {
       'description': 'Some discription',
       'additional_info': 'additional information about this plant',
       'app_object_id': '232',
-      'tenant_id': id
+      'tenant_id': this._getRandomNum(1, 10)
     }
+  }
+
+  private _getRandomNum(min, max) {
+    return Math.round(Math.random() * (max - min) + min);
   }
 
   public getIds() {

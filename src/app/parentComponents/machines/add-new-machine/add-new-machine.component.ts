@@ -10,7 +10,7 @@ export class AddNewMachineComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newMachine: Object = {};
+  newMachine: any = {};
   tendentIds;
   plantIds;
 

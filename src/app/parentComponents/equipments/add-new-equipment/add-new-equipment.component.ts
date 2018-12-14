@@ -10,7 +10,7 @@ export class AddNewEquipmentComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newEquipment: Object = {};
+  newEquipment: any = {};
   tendentIds;
   plantIds;
   machineIds;

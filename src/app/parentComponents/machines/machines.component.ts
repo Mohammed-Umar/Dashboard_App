@@ -11,7 +11,7 @@ export class MachinesComponent implements OnInit {
 
   public activeScreen = 'list';
 
-  public machineToUpdate;
+  public machineToUpdate: any = {};
 
   constructor(private service: MachinesService) { }
 

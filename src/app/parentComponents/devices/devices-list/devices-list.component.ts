@@ -13,16 +13,20 @@ export class DevicesListComponent implements OnInit {
 
   devices = this.service.list;
 
-  public headers = ['Id', 'Name', 'Description', 'Additional Info'];
+  public headers = this.service.headers;
 
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
   }
 
-  public moveTo(screen, data) {
-    this.needToUpdate.emit(data);
+  public moveTo(screen) {
     this.changeScreen.emit(screen);
+  }
+
+  public update(screen, data) {
+    this.needToUpdate.emit(data);
+    this.moveTo(screen);
   }
 
 }
