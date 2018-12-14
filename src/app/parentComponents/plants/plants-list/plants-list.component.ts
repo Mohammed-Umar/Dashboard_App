@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { PlantsService } from '../plants.service';
 
 @Component({
   selector: 'app-plants-list',
@@ -8,14 +9,19 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class PlantsListComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
+  @Output() needToUpdate = new EventEmitter<any>();
 
-  constructor() { }
+  plants = this.service.list;
+
+  public headers = ['Id', 'Name', 'Description', 'Additional Info'];
+
+  constructor(private service: PlantsService) { }
 
   ngOnInit() {
   }
 
-  public moveTo(screen) {
+  public moveTo(screen, data) {
+    this.needToUpdate.emit(data);
     this.changeScreen.emit(screen);
   }
-
 }

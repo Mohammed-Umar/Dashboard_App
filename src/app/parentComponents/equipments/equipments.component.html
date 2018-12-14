@@ -1,4 +1,4 @@
 
-<app-equipments-list *ngIf="activeScreen === 'list'" (changeScreen)=changeScreen($event)></app-equipments-list>
+<app-equipments-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-equipments-list>
 <app-add-new-equipment *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-equipment>
-<app-update-equipment *ngIf="activeScreen === 'update'" (changeScreen)=changeScreen($event)></app-update-equipment>
+<app-update-equipment *ngIf="activeScreen === 'update'" [equipment]="equipmentToUpdate" (changeScreen)=changeScreen($event)></app-update-equipment>

@@ -1,4 +1,4 @@
 
-<app-machines-list *ngIf="activeScreen === 'list'" (changeScreen)=changeScreen($event)></app-machines-list>
+<app-machines-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-machines-list>
 <app-add-new-machine *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-machine>
-<app-update-machine *ngIf="activeScreen === 'update'" (changeScreen)=changeScreen($event)></app-update-machine>
+<app-update-machine *ngIf="activeScreen === 'update'" [machine]="machineToUpdate" (changeScreen)=changeScreen($event)></app-update-machine>

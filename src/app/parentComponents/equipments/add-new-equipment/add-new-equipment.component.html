@@ -1,88 +1,73 @@
 <div class="main-content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header card-header-danger">
-            <h4 class="card-title">Edit Profile</h4>
-            <p class="card-category">Complete your profile</p>
-          </div>
-          <div class="card-body">
-            <form>
-              <div class="row">
-                <div class="col-md-5">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Company (disabled)" disabled>
-                  </mat-form-field>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Add New Equipment</h4>
+              <p class="card-category">Fill all the fields</p>
+            </div>
+            <div class="card-body">
+              <form (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="col-md-2">
+                    <mat-form-field>
+                      <mat-select [(value)]="newEquipment.tenant_id" placeholder= "Tanant ID">
+                        <mat-option *ngFor="let id of tendentIds" [value]="id">
+                          {{id}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2">
+                    <mat-form-field>
+                      <mat-select [(value)]="newEquipment.plant_id" placeholder="Plant ID">
+                        <mat-option *ngFor="let id of plantIds" [value]="id">
+                          {{id}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2">
+                    <mat-form-field>
+                      <mat-select [(value)]="newEquipment.machine_id" placeholder="Machine ID">
+                        <mat-option *ngFor="let id of machineIds" [value]="id">
+                          {{id}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="newEquipment.name" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-2">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="App Object Id" type="text" name="App Object Id" [(ngModel)]="newEquipment.app_object_id" required>
+                    </mat-form-field>
+                  </div>
+                  <div class="col-md-10">
+                    <mat-form-field class="example-full-width">
+                      <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="newEquipment.description" required>
+                    </mat-form-field>
+                  </div>
                 </div>
-                <div class="col-md-3">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Username">
-                  </mat-form-field>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label>Additional Info</label>
+                    <mat-form-field class="example-full-width">
+                      <textarea matInput placeholder="Give Additional information" name="Info" [(ngModel)]="newEquipment.additional_info" required></textarea>
+                    </mat-form-field>
+                  </div>
                 </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email address" type="email">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Fist Name" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Last Name" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Adress" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="City" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Country" type="text">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-4">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Postal Code" type="text">
-                  </mat-form-field>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>About Me</label>
-                  <mat-form-field class="example-full-width">
-                    <textarea matInput placeholder="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."></textarea>
-                  </mat-form-field>
-                  <!-- <div class="form-group">
-                    
-                    <div class="form-group">
-                      <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                      <textarea class="form-control" rows="5"></textarea>
-                    </div>
-                  </div> -->
-                </div>
-              </div>
-              <button mat-raised-button type="submit" (click)="moveTo('list')" class="btn btn-success btn-lg btn-block">Add</button>
-              <div class="clearfix"></div>
-            </form>
+                <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Add</button> <!-- (click)="moveTo('list')"-->
+                <div class="clearfix"></div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  

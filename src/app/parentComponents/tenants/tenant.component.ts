@@ -10,6 +10,8 @@ export class TenantsComponent implements OnInit {
 
   public activeScreen = 'list';
 
+  public tenantToUpdate;
+
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +19,12 @@ export class TenantsComponent implements OnInit {
 
   public changeScreen(screen) {
     this.activeScreen = screen;
+    console.log(screen);
+  }
+
+  public toUpdate(tenant) {
+    this.tenantToUpdate = tenant;
+    console.log(tenant);
   }
 
 }

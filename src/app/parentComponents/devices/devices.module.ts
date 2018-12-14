@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { DevicesComponent } from './devices.component';
 import { DevicesListComponent } from './devices-list/devices-list.component';
 import { AddNewDeviceComponent } from './add-new-device/add-new-device.component';
 import { UpdateDeviceComponent } from './update-device/update-device.component';
+import { DevicesService } from './devices.service';
 
 import {
   MatButtonModule,
@@ -17,6 +19,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatInputModule,
     MatRippleModule,
@@ -29,6 +32,7 @@ import {
     DevicesListComponent,
     AddNewDeviceComponent,
     UpdateDeviceComponent
-  ]
+  ],
+  providers: [DevicesService]
 })
 export class DevicesModule { }

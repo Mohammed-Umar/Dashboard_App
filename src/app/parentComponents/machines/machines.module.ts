@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { MachinesComponent } from './machines.component'
 import { AddNewMachineComponent } from './add-new-machine/add-new-machine.component'
 import { MachinesListComponent } from './machines-list/machines-list.component'
 import { UpdateMachineComponent } from './update-machine/update-machine.component'
+import { MachinesService } from './machines.service';
 
 import {
   MatButtonModule,
@@ -18,6 +20,7 @@ import {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     MatButtonModule,
     MatInputModule,
     MatRippleModule,
@@ -30,6 +33,7 @@ import {
     AddNewMachineComponent,
     MachinesListComponent,
     UpdateMachineComponent
-  ]
+  ],
+  providers: [MachinesService]
 })
 export class MachinesModule { }

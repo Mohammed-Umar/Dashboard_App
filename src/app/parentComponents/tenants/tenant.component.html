@@ -1,5 +1,4 @@
 
-
-<app-tenants-list *ngIf="activeScreen === 'list'" (changeScreen)=changeScreen($event)></app-tenants-list>
+<app-tenants-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-tenants-list>
 <app-add-new-tenant *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-tenant>
-<app-update-tenant *ngIf="activeScreen === 'update'" (changeScreen)=changeScreen($event)></app-update-tenant>
+<app-update-tenant *ngIf="activeScreen === 'update'" [tenant]="tenantToUpdate" (changeScreen)=changeScreen($event)></app-update-tenant>

@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { TenantsService } from '../tenants.service';
 
 @Component({
   selector: 'app-add-new-tenant',
@@ -9,13 +10,25 @@ export class AddNewTenantComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  constructor() { }
+  newTenant: Object = {};
+
+  constructor(private service: TenantsService) { }
 
   ngOnInit() {
   }
 
   public moveTo(screen) {
     this.changeScreen.emit(screen);
+  }
+
+  public addTenant(obj) {
+    this.service.addNew(obj);
+  }
+
+  onSubmit() {
+    this.addTenant(this.newTenant);
+    console.log(this.service.tenants);
+    this.moveTo('list');
   }
 
 }

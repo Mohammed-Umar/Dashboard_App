@@ -6,8 +6,8 @@
           <div class="card-header card-header-danger">
             <div class="row">
               <div class="col-md-10">
-                  <h4 class="card-title ">Simple Table</h4>
-                  <p class="card-category"> Here is a subtitle for this table</p>
+                  <h4 class="card-title ">Tenants List</h4>
+                  <p class="card-category"> Brief information about each tenant is available </p>
               </div>
             <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
             </div>
@@ -16,151 +16,26 @@
             <div class="table-responsive">
               <table class="table">
                 <thead class=" text-primary">
-                  <th>
-                    ID
-                  </th>
-                  <th>
-                    Name
-                  </th>
-                  <th>
-                    Country
-                  </th>
-                  <th>
-                    City
-                  </th>
-                  <th>
-                    Salaries
+                  <th *ngFor="let header of headers">
+                    {{ header }}
                   </th>
                 </thead>
                 <tbody>
-                  <tr>
+                  <tr *ngFor="let tenant of tenants">
                     <td>
-                      1
-                    </td>
-                    <td>
-                      Dakota Rice
+                      {{ tenant.id }}
                     </td>
                     <td>
-                      Niger
+                      {{ tenant.name }}
                     </td>
                     <td>
-                      Oud-Turnhout
-                    </td>
-                    <td class="text-primary">
-                        $23,789
+                      {{  tenant.description }}
                     </td>
                     <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
-                      Update                        
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      2
+                      {{ tenant.additional_info }}
                     </td>
                     <td>
-                      Minerva Hooper
-                    </td>
-                    <td>
-                      Curaçao
-                    </td>
-                    <td>
-                      Sinaai-Waas
-                    </td>
-                    <td class="text-primary">
-                      $23,789
-                    </td>
-                    <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
-                      Update                        
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      3
-                    </td>
-                    <td>
-                      Sage Rodriguez
-                    </td>
-                    <td>
-                      Netherlands
-                    </td>
-                    <td>
-                      Baileux
-                    </td>
-                    <td class="text-primary">
-                      $56,142
-                    </td>
-                    <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
-                      Update                        
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      4
-                    </td>
-                    <td>
-                      Philip Chaney
-                    </td>
-                    <td>
-                      Korea, South
-                    </td>
-                    <td>
-                      Overland Park
-                    </td>
-                    <td class="text-primary">
-                      $38,735
-                    </td>
-                    <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
-                      Update                        
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      5
-                    </td>
-                    <td>
-                      Doris Greene
-                    </td>
-                    <td>
-                      Malawi
-                    </td>
-                    <td>
-                      Feldkirchen in Kärnten
-                    </td>
-                    <td class="text-primary">
-                      $63,542
-                    </td>
-                    <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
-                      Update                        
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      6
-                    </td>
-                    <td>
-                      Mason Porter
-                    </td>
-                    <td>
-                      Chile
-                    </td>
-                    <td>
-                      Gloucester
-                    </td>
-                    <td class="text-primary">
-                      $78,615
-                    </td>
-                    <td>
-                      <a (click)="moveTo('update')" class="btn btn-success btn-round">
+                      <a (click)="moveTo('update', tenant)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
                       Update                        
                       </a>
                     </td>

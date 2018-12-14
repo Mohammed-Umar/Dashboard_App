@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { TenantsService } from '../tenants.service';
 
 @Component({
   selector: 'app-tenants-list',
@@ -8,14 +9,29 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class TenantsListComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
+  @Output() needToUpdate = new EventEmitter<any>();
 
-  constructor() { }
+  tenants = this.service.tenants;
+
+  public headers = ['Id', 'Name', 'Description', 'Additional Info'];
+
+  constructor(private service: TenantsService) { }
 
   ngOnInit() {
   }
 
-  public moveTo(screen) {
+  public moveTo(screen, data) {
+    this.needToUpdate.emit(data);
     this.changeScreen.emit(screen);
   }
+
+
+  /**
+   * Id
+   * Name
+   * Description
+   * app_object_id
+   * additional_info
+   */
 
 }
