@@ -10,10 +10,10 @@ export class TenantsService {
   public headers = ['Id', 'Name', 'Description', 'Additional Info'];
 
   constructor() {
-    this.constructArrayOfPlants();
+    this.constructArrayOfTenants();
    }
 
-  constructArrayOfPlants() {
+  constructArrayOfTenants() {
     const array = [];
     for (let i = 0; i < 10; i++) {
       array[i] = this.constructObject(i + 1);
@@ -25,9 +25,9 @@ export class TenantsService {
   constructObject(id) {
     return {
       'id': id,
-      'name': 'Plant' + ' ' + id,
+      'name': 'Tenant' + ' ' + id,
       'description': 'Some discription',
-      'additional_info': 'additional information about this plant',
+      'additional_info': 'additional information about this tenant',
       'app_object_id': '232'
     }
   }

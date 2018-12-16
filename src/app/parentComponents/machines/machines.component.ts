@@ -16,7 +16,6 @@ export class MachinesComponent implements OnInit {
   constructor(private service: MachinesService) { }
 
   ngOnInit() {
-    this.service.constructArrayOfPlants();
   }
 
   public changeScreen(screen) {

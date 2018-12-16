@@ -15,7 +15,6 @@ export class DevicesComponent implements OnInit {
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
-    this.service.constructArrayOfPlants();
   }
 
   public changeScreen(screen) {

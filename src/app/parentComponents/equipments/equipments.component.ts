@@ -15,7 +15,6 @@ export class EquipmentsComponent implements OnInit {
   constructor(private service: EquipmentsService) { }
 
   ngOnInit() {
-    this.service.constructArrayOfPlants();
   }
 
   public changeScreen(screen) {

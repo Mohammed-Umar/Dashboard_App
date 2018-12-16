@@ -11,10 +11,10 @@ export class DevicesService {
   public headers = ['Id', 'Name', 'Description', 'Additional Info', 'Tenant ID', 'Plant ID', 'Machine ID', 'Equipment ID'];
 
   constructor(private tenantService: TenantsService) {
-    this.constructArrayOfPlants();
+    this.constructArrayOfDevices();
    }
 
-  constructArrayOfPlants() {
+  constructArrayOfDevices() {
     const array = [];
     for (let i = 0; i < 10; i++) {
       array[i] = this.constructObject(i + 1);
