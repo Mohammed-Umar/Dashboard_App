@@ -2,6 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
 
 
@@ -17,6 +18,7 @@ import { UsersModule } from './parentComponents/users/users.module';
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
 
 import { AppComponent } from './app.component';
+import { SharedService } from './shared.service';
 
 import { TenantsComponent } from './parentComponents/tenants/tenant.component';
 import { UsersComponent } from './parentComponents/users/users.component';
@@ -34,6 +36,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    HttpClientModule,
     ComponentsModule,
     DevicesModule,
     EquipmentsModule,
@@ -52,7 +55,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
   declarations: [
     AppComponent,
   ],
-  providers: [],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

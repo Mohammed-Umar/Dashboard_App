@@ -18,6 +18,10 @@ export class TenantsListComponent implements OnInit {
   constructor(private service: TenantsService) { }
 
   ngOnInit() {
+    this.service.getTenants();
+    // const x = this.service.tenantsList.subscribe(res => res);
+    // console.log(x);
+    // console.log(this.service.tenantsList);
   }
 
   public moveTo(screen) {

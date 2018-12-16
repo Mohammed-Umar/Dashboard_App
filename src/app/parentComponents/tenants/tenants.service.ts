@@ -1,17 +1,30 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenantsService {
 
+  readonly url = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/tenants';
+
+  public tenantsList;
+
   public list;
 
   public headers = ['Id', 'Name', 'Description', 'Additional Info'];
 
-  constructor() {
+  constructor(private _http: HttpClient) {
     this.constructArrayOfTenants();
-   }
+  }
+
+  getTenants() {
+    return this._http.get(this.url).subscribe(res => {
+      this.tenantsList = res;
+      console.log(res);
+      return res;
+    });
+  }
 
   constructArrayOfTenants() {
     const array = [];

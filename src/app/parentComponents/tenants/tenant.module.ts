@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { TenantsComponent } from './tenant.component'
 import { AddNewTenantComponent } from './add-new-tenant/add-new-tenant.component'
@@ -21,6 +22,7 @@ import {
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatInputModule,
     MatRippleModule,
