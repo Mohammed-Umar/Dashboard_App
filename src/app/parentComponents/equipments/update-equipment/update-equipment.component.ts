@@ -23,6 +23,8 @@ export class UpdateEquipmentComponent implements OnInit {
   ngOnInit() {
     console.log(this.equipment);
     this.getTenantIds();
+    this.getPlantIds();
+    this.getMachineIds();
   }
 
   private getTenantIds() {
