@@ -31,13 +31,25 @@
                     <td>
                       {{  tenant.description }}
                     </td>
-                    <td>
+                    <!-- <td>
                       {{ tenant.additional_info }}
+                    </td> -->
+                    <td>
+                      <a (click)="openDetails('details', tenant)" class="btn btn-primary btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                      Details                        
+                      </a>
                     </td>
                     <td>
-                      <a (click)="update('update', tenant)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                      <a (click)="update('update', tenant)" class="btn btn-warning btn-round pull-right"> <!-- (click)="moveTo('update')" -->
                       Update                        
                       </a>
+                    </td>
+                    <td>
+                      <a (click)="delete('list', tenant)" class="btn btn-danger btn-round pull-right">
+                        <i class="material-icons">delete_outline</i>
+                        DELETE
+                      </a>
+                      
                     </td>
                   </tr>
                 </tbody>

@@ -4,36 +4,45 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header card-header-danger">
-              <h4 class="card-title">Update Tenant</h4>
-              <p class="card-category">All the fields must be filled</p>
+              <div class="row">
+                <div class="col-md-11">
+                  <h4 class="card-title">Update Tenant</h4>
+                  <p class="card-category">All the fields must be filled</p>
+                </div>
+                <div class="col-md-1">
+                  <a (click)="moveTo('list')">
+                    <i class="material-icons pull-right">close</i>
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <form (ngSubmit)="onSubmit()">
                 <div class="row">
-                  <div class="col-md-8">
+                  <div class="col-md-4">
                     <mat-form-field class="example-full-width">
                       <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="tenant.name" required>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-4">
+                  <!-- <div class="col-md-4">
                     <mat-form-field class="example-full-width">
                       <input matInput placeholder="App Object Id" type="text" name="App Object Id" [(ngModel)]="tenant.app_object_id" required>
                     </mat-form-field>
-                  </div>
-                  <div class="col-md-12">
+                  </div> -->
+                  <div class="col-md-8">
                     <mat-form-field class="example-full-width">
                       <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="tenant.description" required>
                     </mat-form-field>
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                   <div class="col-md-12">
                     <label>Additional Info</label>
                     <mat-form-field class="example-full-width">
                       <textarea matInput placeholder="Give Additional information" name="Info" [(ngModel)]="tenant.additional_info" required></textarea>
                     </mat-form-field>
                   </div>
-                </div>
+                </div> -->
                 <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Update</button> <!-- (click)="moveTo('list')"-->
                 <div class="clearfix"></div>
               </form>

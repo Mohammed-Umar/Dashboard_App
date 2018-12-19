@@ -12,6 +12,8 @@ export class TenantsComponent implements OnInit {
 
   public tenantToUpdate;
 
+  public tenantDetails;
+
   constructor() { }
 
   ngOnInit() {
@@ -25,6 +27,10 @@ export class TenantsComponent implements OnInit {
   public toUpdate(tenant) {
     this.tenantToUpdate = tenant;
     console.log(tenant);
+  }
+
+  public showDetails(tenant) {
+    this.tenantDetails = tenant;
   }
 
 }

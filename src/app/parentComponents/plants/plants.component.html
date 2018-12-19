@@ -1,4 +1,5 @@
 
-<app-plants-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-plants-list>
-<app-add-new-plant *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-plant>
-<app-update-plant *ngIf="activeScreen === 'update'" [plant]="plantToUpdate"  (changeScreen)=changeScreen($event)></app-update-plant>
+<app-plants-list *ngIf="activeScreen === 'list'" [tenanteNamesList]="tenanteNamesList" (showDetails)=showDetails($event) (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-plants-list>
+<app-add-new-plant *ngIf="activeScreen === 'new'" [tenanteNamesList]="tenanteNamesList" (changeScreen)=changeScreen($event)></app-add-new-plant>
+<app-update-plant *ngIf="activeScreen === 'update'" [tenanteNamesList]="tenanteNamesList" [plant]="plantToUpdate"  (changeScreen)=changeScreen($event)></app-update-plant>
+<app-details *ngIf="activeScreen === 'details'" (needToUpdate)=toUpdate($event) [plant]="plantDetails" (changeScreen)=changeScreen($event)></app-details>

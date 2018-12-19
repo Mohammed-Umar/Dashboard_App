@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { PlantsService } from '../plants.service';
 
 @Component({
@@ -10,13 +10,17 @@ export class AddNewPlantComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
-  newPlant: any = {};
-  tendentIds;
+  @Input() tenanteNamesList;
+
+  public newPlant: any = {};
+
+  public tenantSelected;
 
   constructor(private service: PlantsService) { }
 
   ngOnInit() {
-    this.getTenantIds();
+    console.log(this.tenantSelected);
+    console.log(this.tenanteNamesList);
   }
 
   public moveTo(screen) {
@@ -24,17 +28,12 @@ export class AddNewPlantComponent implements OnInit {
   }
 
   public addTenant(obj) {
-    this.service.addNew(obj);
-    console.log(obj);
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
+    this.service.createTenant(obj, this.tenantSelected);
   }
 
   onSubmit() {
+    console.log(this.tenantSelected);
     this.addTenant(this.newPlant);
-    console.log(this.service.list);
     this.moveTo('list');
   }
 

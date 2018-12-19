@@ -5,6 +5,7 @@ import { DevicesComponent } from './devices.component';
 import { DevicesListComponent } from './devices-list/devices-list.component';
 import { AddNewDeviceComponent } from './add-new-device/add-new-device.component';
 import { UpdateDeviceComponent } from './update-device/update-device.component';
+import { DetailsComponent } from './details/details.component';
 import { DevicesService } from './devices.service';
 
 import {
@@ -31,7 +32,8 @@ import {
     DevicesComponent,
     DevicesListComponent,
     AddNewDeviceComponent,
-    UpdateDeviceComponent
+    UpdateDeviceComponent,
+    DetailsComponent
   ],
   providers: [DevicesService]
 })

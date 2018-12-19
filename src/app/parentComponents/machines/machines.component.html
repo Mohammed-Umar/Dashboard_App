@@ -1,4 +1,5 @@
 
-<app-machines-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-machines-list>
-<app-add-new-machine *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-machine>
-<app-update-machine *ngIf="activeScreen === 'update'" [machine]="machineToUpdate" (changeScreen)=changeScreen($event)></app-update-machine>
+<app-machines-list *ngIf="activeScreen === 'list'" [preSelectedList]="currentSelectedList" [plantsMiniList]="plantsMiniList" [tenanteNamesList]="tenanteNamesList" (showDetails)=showDetails($event) (needToUpdate)=toUpdate($event) (changeScreen)=changeScreenFromList($event)></app-machines-list>
+<app-add-new-machine *ngIf="activeScreen === 'new'" [plantsMiniList]="plantsMiniList" [tenanteNamesList]="tenanteNamesList" (changeScreen)=changeScreen($event)></app-add-new-machine>
+<app-update-machine *ngIf="activeScreen === 'update'" [plantNamesList]="plantsMiniList" [tenanteNamesList]="tenanteNamesList" [machine]="machineToUpdate" (changeScreen)=changeScreen($event)></app-update-machine>
+<app-details *ngIf="activeScreen === 'details'" (needToUpdate)=toUpdate($event) [machine]="machineDetails" (changeScreen)=changeScreen($event)></app-details>

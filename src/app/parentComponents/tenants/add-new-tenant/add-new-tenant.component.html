@@ -4,42 +4,51 @@
       <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h4 class="card-title">Add New Tenant</h4>
-            <p class="card-category">Fill all the fields</p>
+            <div class="row">
+              <div class="col-md-11">
+                <h4 class="card-title">Add New Tenant</h4>
+                <p class="card-category">Fill all the fields</p>
+              </div>
+              <div class="col-md-1">
+                <a (click)="moveTo('list')">
+                  <i class="material-icons pull-right">close</i>
+                </a>
+              </div>
+            </div>
           </div>
           <div class="card-body">
             <form (ngSubmit)="onSubmit()">
               <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="newTenant.name" required>
                   </mat-form-field>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <mat-form-field class="example-full-width">
                     <input matInput placeholder="App Object Id" type="text" name="App Object Id" [(ngModel)]="newTenant.app_object_id" required>
                   </mat-form-field>
-                </div>
-                <div class="col-md-12">
+                </div> -->
+                <div class="col-md-8">
                   <mat-form-field class="example-full-width">
                     <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="newTenant.description" required>
                   </mat-form-field>
                 </div>
               </div>
-              <div class="row">
+              <!-- <div class="row">
                 <div class="col-md-12">
                   <label>Additional Info</label>
                   <mat-form-field class="example-full-width">
                     <textarea matInput placeholder="Give Additional information" name="Info" [(ngModel)]="newTenant.additional_info" required></textarea>
-                  </mat-form-field>
+                  </mat-form-field> -->
                   <!-- <div class="form-group">                    
                     <div class="form-group">
                       <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
                       <textarea class="form-control" rows="5"></textarea>
                     </div>
                   </div> -->
-                </div>
-              </div>
+                <!-- </div>
+              </div> -->
               <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Add</button> <!-- (click)="moveTo('list')"-->
               <div class="clearfix"></div>
             </form>

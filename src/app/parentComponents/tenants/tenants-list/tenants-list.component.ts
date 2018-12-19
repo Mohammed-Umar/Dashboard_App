@@ -10,8 +10,9 @@ export class TenantsListComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
   @Output() needToUpdate = new EventEmitter<any>();
+  @Output() showDetails = new EventEmitter<any>();
 
-  tenants = this.service.list;
+  public tenants = this.service.list;
 
   public headers = this.service.headers;
 
@@ -19,9 +20,10 @@ export class TenantsListComponent implements OnInit {
 
   ngOnInit() {
     this.service.getTenants();
-    // const x = this.service.tenantsList.subscribe(res => res);
-    // console.log(x);
-    // console.log(this.service.tenantsList);
+    this.service.tenantsList.subscribe(list => {
+      this.tenants = list;
+      console.log(this.tenants);
+    });
   }
 
   public moveTo(screen) {
@@ -33,13 +35,13 @@ export class TenantsListComponent implements OnInit {
     this.moveTo(screen);
   }
 
+  public openDetails(screen, data) {
+    this.showDetails.emit(data);
+    this.moveTo(screen);
+  }
 
-  /**
-   * Id
-   * Name
-   * Description
-   * app_object_id
-   * additional_info
-   */
-
+  delete(screen, tenant) {
+    this.moveTo(screen);
+    this.service.delete(tenant.id);
+  }
 }

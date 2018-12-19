@@ -22,12 +22,11 @@ export class AddNewTenantComponent implements OnInit {
   }
 
   public addTenant(obj) {
-    this.service.addNew(obj);
+    this.service.createTenant(obj);
   }
 
   onSubmit() {
     this.addTenant(this.newTenant);
-    console.log(this.service.list);
     this.moveTo('list');
   }
 

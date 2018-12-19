@@ -6,6 +6,7 @@ import { EquipmentsComponent } from './equipments.component'
 import { AddNewEquipmentComponent } from './add-new-equipment/add-new-equipment.component'
 import { EquipmentsListComponent } from './equipments-list/equipments-list.component'
 import { UpdateEquipmentComponent } from './update-equipment/update-equipment.component';
+import { DetailsComponent } from './details/details.component';
 import { EquipmentsService } from './equipments.service';
 
 import {
@@ -32,7 +33,8 @@ import {
     EquipmentsComponent,
     AddNewEquipmentComponent,
     EquipmentsListComponent,
-    UpdateEquipmentComponent
+    UpdateEquipmentComponent,
+    DetailsComponent
   ],
   providers: [EquipmentsService]
 })

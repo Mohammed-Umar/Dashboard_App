@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PlantsService } from './plants.service';
 
+import { TenantsService } from '../tenants/tenants.service';
+
 @Component({
   selector: 'app-plants',
   templateUrl: './plants.component.html',
@@ -12,9 +14,22 @@ export class PlantsComponent implements OnInit {
 
   public plantToUpdate;
 
-  constructor(private service: PlantsService) { }
+  public plantDetails;
+
+  public tenanteNamesList;
+
+  constructor(private service: PlantsService, private _tenantService: TenantsService) { }
 
   ngOnInit() {
+    this.getTenantNames();
+  }
+
+  getTenantNames() {
+    this._tenantService.getNames();
+    this._tenantService.getTenantNames.subscribe(names => {
+      this.tenanteNamesList = names;
+      console.log(names);
+    })
   }
 
   public changeScreen(screen) {
@@ -25,6 +40,11 @@ export class PlantsComponent implements OnInit {
   public toUpdate(tenant) {
     this.plantToUpdate = tenant;
     console.log(tenant);
+  }
+
+  public showDetails(plant) {
+    console.log(plant);
+    this.plantDetails = plant;
   }
 
 }

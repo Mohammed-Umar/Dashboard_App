@@ -6,13 +6,26 @@
             <div class="card-header card-header-danger">
               <div class="row">
                 <div class="col-md-10">
-                    <h4 class="card-title ">Plants List</h4>
-                    <p class="card-category"> Brief information about each plant is available here</p>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="card-title ">Plants List</h4>
+                    </div>
+                    <div class="col-md-3">
+                      <mat-form-field>
+                        <mat-select [(value)]="tenantSelected" placeholder="Tanant Name">
+                          <mat-option *ngFor="let names of tenanteNamesList" (click)="optionSelected()" [value]="names">
+                            {{names.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                    <!-- <p class="card-category"> Brief information about each plant is available here</p> -->
                 </div>
               <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
               </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" *ngIf="showlist">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -32,15 +45,21 @@
                         {{  plant.description }}
                       </td>
                       <td>
-                        {{ plant.additional_info }}
-                      </td>
-                      <td class="text-center">
-                        {{ plant.tenant_id }}
+                        <a (click)="openDetails('details', plant)" class="btn btn-primary btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        Details                        
+                        </a>
                       </td>
                       <td>
-                        <a (click)="update('update', plant)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        <a (click)="update('update', plant)" class="btn btn-warning btn-round pull-right"> <!-- (click)="moveTo('update')" -->
                         Update                        
                         </a>
+                      </td>
+                      <td>
+                        <a (click)="delete('list', plant)" class="btn btn-danger btn-round pull-right">
+                          <i class="material-icons">delete_outline</i>
+                          DELETE
+                        </a>
+                        
                       </td>
                     </tr>
                   </tbody>

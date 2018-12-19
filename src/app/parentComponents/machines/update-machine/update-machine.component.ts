@@ -12,6 +12,14 @@ export class UpdateMachineComponent implements OnInit {
 
   @Input() machine;
 
+  @Input() tenanteNamesList;
+
+  @Input() plantNamesList;
+
+  public tenantSelected;
+
+  public plantSelected;
+
   tendentIds: any;
 
   plantIds: any;
@@ -20,16 +28,8 @@ export class UpdateMachineComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.machine);
-    this.getTenantIds();
-    this.getPlantIds();
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
-  }
-
-  private getPlantIds() {
-    this.plantIds = this.service.getPlantIds();
+    this.tenantSelected = this.machine.tenant_id;
+    this.plantSelected = this.machine.plant_id;
   }
 
   public moveTo(screen) {
@@ -37,7 +37,7 @@ export class UpdateMachineComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.service.update(this.machine);
+    this.service.update(this.machine, this.tenantSelected, this.plantSelected);
     console.log(this.machine);
     this.moveTo('list');
   }

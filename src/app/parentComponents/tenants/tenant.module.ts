@@ -17,6 +17,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import {
     AddNewTenantComponent,
     TenantsListComponent,
     UpdateTenantComponent,
-    TenantsComponent
+    TenantsComponent,
+    DetailsComponent
   ],
   providers: [TenantsService]
 })

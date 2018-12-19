@@ -12,17 +12,16 @@ export class UpdatePlantComponent implements OnInit {
 
   @Input() plant;
 
-  tendentIds: any;
+  @Input() tenanteNamesList;
+
+  public tenantSelected;
 
   constructor(private service: PlantsService) { }
 
   ngOnInit() {
     console.log(this.plant);
-    this.getTenantIds();
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
+    console.log(this.tenanteNamesList);
+    this.tenantSelected = this.plant.tenant_id;
   }
 
   public moveTo(screen) {
@@ -30,8 +29,8 @@ export class UpdatePlantComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.service.update(this.plant);
-    console.log(this.plant);
+    console.log(this.tenantSelected);
+    this.service.update(this.plant, this.tenantSelected);
     this.moveTo('list');
   }
 

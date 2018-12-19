@@ -56,3 +56,18 @@ I looks that additional_info field has made required and only of type object **{
 
 ### Working
 
+* GET LIST
+* GET ONE
+* CREATE
+* DELETE
+
+### NOT WORKING
+
+* UPDATE
+
+## Machines
+
+### Working
+
+* 
+
