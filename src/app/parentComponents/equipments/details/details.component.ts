@@ -12,12 +12,12 @@ export class DetailsComponent implements OnInit {
 
   @Output() needToUpdate = new EventEmitter<any>();
 
-  @Input() plant;
+  @Input() equipment;
 
   constructor(private service: EquipmentsService) { }
 
   ngOnInit() {
-    console.log(this.plant)
+    console.log(this.equipment)
   }
 
   public moveTo(screen) {
@@ -25,12 +25,12 @@ export class DetailsComponent implements OnInit {
   }
 
   public update(screen) {
-    this.needToUpdate.emit(this.plant);
+    this.needToUpdate.emit(this.equipment);
     this.moveTo(screen);
   }
 
   public delete(screen) {
-    // this.service.delete(this.plant.id);
+    this.service.delete(this.equipment.id);
     this.moveTo(screen);
   }
 

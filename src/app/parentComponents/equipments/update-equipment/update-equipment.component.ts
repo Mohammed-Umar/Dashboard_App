@@ -12,31 +12,34 @@ export class UpdateEquipmentComponent implements OnInit {
 
   @Input() equipment;
 
+  @Input() tenantsNamesList;
+
+  @Input() plantsMiniList;
+
+  @Input() machinesMiniList;
+
+  public tenantSelected;
+
+  public plantSelected;
+
+  public machineSelected;
+
   tendentIds: any;
 
   plantIds: any;
 
   machineIds: any;
 
+  public isCritical;
+
   constructor(private service: EquipmentsService) { }
 
   ngOnInit() {
     console.log(this.equipment);
-    this.getTenantIds();
-    this.getPlantIds();
-    this.getMachineIds();
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
-  }
-
-  private getPlantIds() {
-    this.plantIds = this.service.getTenantIds();
-  }
-
-  private getMachineIds() {
-    this.machineIds = this.service.getTenantIds();
+    this.tenantSelected = this.equipment.tenant_id;
+    this.plantSelected = this.equipment.plant_id;
+    this.machineSelected = this.equipment.machine_id;
+    this.isCritical = this.equipment.is_critical;
   }
 
   public moveTo(screen) {
@@ -44,7 +47,7 @@ export class UpdateEquipmentComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.service.update(this.equipment);
+    this.service.update(this.equipment, this.tenantSelected, this.plantSelected, this.machineSelected);
     console.log(this.equipment);
     this.moveTo('list');
   }

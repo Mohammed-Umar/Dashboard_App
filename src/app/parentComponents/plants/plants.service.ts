@@ -102,7 +102,7 @@ export class PlantsService {
     this.plantsList.subscribe(list => {
       console.log(list);
       const reduce = list.reduce((finalList, obj) => {
-        console.log(obj)
+        // console.log(obj)
         const id = obj.id;
         const name = obj.name;
         const tenantID = obj.tenant_id;

@@ -21,6 +21,10 @@ export class MachinesService {
 
   public machinesList = this.machinesSubject.asObservable();
 
+  public fetchMachineNames: BehaviorSubject<any> = new BehaviorSubject([])
+
+  public getMachineNames = this.fetchMachineNames.asObservable();
+
   constructor(private tenantService: TenantsService, private plantService: PlantsService, private _sharedService:SharedService) {
     // this.constructArrayOfMachines();
   }
@@ -96,6 +100,27 @@ export class MachinesService {
     machine.tenant_id = tenant.id;
     machine.plant_id = plant.id;
     this.updateTenant(machine.id, machine);
+  }
+
+  public getNames() {
+    this.getTenants();
+    this.machinesList.subscribe(list => {
+      console.log(list);
+      const reduce = list.reduce((finalList, obj) => {
+        console.log(obj)
+        const id = obj.id;
+        const name = obj.name;
+        const tenantID = obj.tenant_id;
+        const plantID = obj.plant_id;
+        finalList.push({id, name, tenantID, plantID});
+        return finalList;
+      } , [])
+      console.log('REDUCE', reduce);
+      const namesList = list.map(obj => obj.name);
+      console.log(namesList);
+      this.fetchMachineNames.next(reduce);
+      return reduce;
+    });
   }
 
   private _getRandomNum(min, max) {

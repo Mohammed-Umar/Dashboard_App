@@ -1,4 +1,6 @@
 
-<app-equipments-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-equipments-list>
-<app-add-new-equipment *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-equipment>
-<app-update-equipment *ngIf="activeScreen === 'update'" [equipment]="equipmentToUpdate" (changeScreen)=changeScreen($event)></app-update-equipment>
+<app-equipments-list *ngIf="activeScreen === 'list'" [preSelectedList]="currentSelectedList" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" (showDetails)=showDetails($event) (needToUpdate)=toUpdate($event) (changeScreen)=changeScreenFromList($event)></app-equipments-list>
+<app-add-new-equipment *ngIf="activeScreen === 'new'" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" (changeScreen)=changeScreen($event)></app-add-new-equipment>
+<app-update-equipment *ngIf="activeScreen === 'update'" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" [equipment]="equipmentToUpdate" (changeScreen)=changeScreen($event)></app-update-equipment>
+<app-details *ngIf="activeScreen === 'details'" (needToUpdate)=toUpdate($event) [equipment]="equipmentDetails" (changeScreen)=changeScreen($event)></app-details>
+<app-qr-code *ngIf="activeScreen === 'qr-code'" (changeScreen)=changeScreen($event)></app-qr-code>

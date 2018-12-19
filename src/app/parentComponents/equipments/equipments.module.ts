@@ -9,6 +9,9 @@ import { UpdateEquipmentComponent } from './update-equipment/update-equipment.co
 import { DetailsComponent } from './details/details.component';
 import { EquipmentsService } from './equipments.service';
 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { QRCodeModule } from 'angularx-qrcode';
+
 import {
   MatButtonModule,
   MatInputModule,
@@ -17,6 +20,7 @@ import {
   MatTooltipModule,
   MatSelectModule
 } from '@angular/material';
+import { QrCodeComponent } from './qr-code/qr-code.component';
 
 @NgModule({
   imports: [
@@ -28,13 +32,16 @@ import {
     MatFormFieldModule,
     MatTooltipModule,
     MatSelectModule,
+    MatCheckboxModule,
+    QRCodeModule,
   ],
   declarations: [
     EquipmentsComponent,
     AddNewEquipmentComponent,
     EquipmentsListComponent,
     UpdateEquipmentComponent,
-    DetailsComponent
+    DetailsComponent,
+    QrCodeComponent
   ],
   providers: [EquipmentsService]
 })

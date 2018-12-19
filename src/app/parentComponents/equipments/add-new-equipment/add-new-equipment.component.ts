@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { EquipmentsService } from '../equipments.service';
 
 @Component({
@@ -10,17 +10,31 @@ export class AddNewEquipmentComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
 
+  @Input() machinesMiniList;
+
+  @Input() plantsMiniList;
+
+  @Input() tenantsNamesList;
+
+  public plantsNamesList;
+
+  public machinesNamesList;
+
   newEquipment: any = {};
-  tendentIds;
-  plantIds;
-  machineIds;
+
+  public tenantSelected;
+
+  public plantSelected;
+
+  public machineSelected;
+
+  public isCritical = false;
+
+  public labelPosition = 'before';
 
   constructor(private service: EquipmentsService) { }
 
   ngOnInit() {
-    this.getTenantIds();
-    this.getPlantIds();
-    this.getMachineIds();
   }
 
   public moveTo(screen) {
@@ -28,25 +42,37 @@ export class AddNewEquipmentComponent implements OnInit {
   }
 
   public addEquipment(obj) {
-    this.service.addNew(obj);
+    obj.is_critical = this.isCritical;
+    this.service.createTenant(obj, this.tenantSelected, this.plantSelected, this.machineSelected);
     console.log(obj);
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
-  }
-
-  private getPlantIds() {
-    this.plantIds = this.service.getTenantIds();
-  }
-
-  private getMachineIds() {
-    this.machineIds = this.service.getTenantIds();
   }
 
   onSubmit() {
     this.addEquipment(this.newEquipment);
-    console.log(this.service.list);
     this.moveTo('list');
+  }
+
+  onTenantSelection() {
+    const selectedTenant = this.tenantSelected;
+    const selectedTenantID = selectedTenant.id;
+    console.log(selectedTenantID);
+    console.log(this.plantsMiniList);
+    const plantsList = this.plantsMiniList.filter( plant => plant.tenantID === selectedTenantID)
+    console.log(plantsList);
+    this.plantsNamesList = plantsList;
+  }
+
+  onPlantSelection() {
+    const selectedPlant = this.plantSelected;
+    const selectedPlantID = selectedPlant.id;
+    console.log(selectedPlantID);
+    console.log(this.machinesMiniList);
+    const machinesList = this.machinesMiniList.filter(machine => machine.plantID === selectedPlantID)
+    console.log(machinesList);
+    this.machinesNamesList = machinesList;
+  }
+
+  onMachineSelection() {
+    console.log('Selected Machine ID is', this.machineSelected.id)
   }
 }

@@ -17,6 +17,8 @@ import { TenantModule } from './parentComponents/tenants/tenant.module';
 import { UsersModule } from './parentComponents/users/users.module';
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
 
+// import { QRCodeModule } from 'angularx-qrcode';
+
 import { AppComponent } from './app.component';
 import { SharedService } from './shared.service';
 
@@ -37,6 +39,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     FormsModule,
     HttpModule,
     HttpClientModule,
+    // QRCodeModule,
     ComponentsModule,
     DevicesModule,
     EquipmentsModule,

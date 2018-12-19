@@ -54,6 +54,7 @@ export class MachinesListComponent implements OnInit {
     console.log('preSelectedList is undefined')
     }
   }
+
   optionsSelected() {
     console.log(this.tenantSelected);
     const tenantID = this.tenantSelected.id;
