@@ -24,7 +24,7 @@ export class EquipmentsService {
 
   public equipmentsList = this.equipmentsSubject.asObservable();
 
-  public guidSubject = new BehaviorSubject([]);
+  public guidSubject = new BehaviorSubject({});
 
   public guidObject = this.guidSubject.asObservable();
 
