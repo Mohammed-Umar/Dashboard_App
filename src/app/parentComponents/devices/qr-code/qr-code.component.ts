@@ -17,11 +17,14 @@ export class QrCodeComponent implements OnInit {
   constructor(private _service: DevicesService) { }
 
   ngOnInit() {
-    this.qrdata = 'Initial QR code data string';
-    // this._service.guidObject.subscribe(obj => {
-    //   this.guidObject = obj;
-    //   // this.qrdata = obj.object_guid;
-    // });
+    // this.qrdata = 'Initial QR code data string';
+    this._service.guidObject.subscribe(obj => {
+      if (obj.hasOwnProperty('object_guid')) {
+        this.guidObject = obj;
+        console.log(this.guidObject);
+        this.qrdata = this.guidObject.object_guid;
+      }
+    }, (err) => console.error(err));
   }
 
   public moveTo(screen) {

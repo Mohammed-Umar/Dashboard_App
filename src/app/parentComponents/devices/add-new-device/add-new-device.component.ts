@@ -18,19 +18,25 @@ export class AddNewDeviceComponent implements OnInit {
 
   @Input() equipmentsMiniList;
 
+  public plantsNamesList;
+
+  public machinesNamesList;
+
+  public equipmentsNamesList;
+
+  public tenantSelected;
+
+  public plantSelected;
+
+  public machineSelected;
+
+  public equipmentSelected;
+
   newDevice: any = {};
-  tendentIds;
-  plantIds;
-  machineIds;
-  equipmentIds;
 
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
-    this.getTenantIds();
-    this.getPlantIds();
-    this.getMachineIds();
-    this.getEquipmentIds();
   }
 
   public moveTo(screen) {
@@ -38,24 +44,42 @@ export class AddNewDeviceComponent implements OnInit {
   }
 
   public addDevice(obj) {
-    this.service.addNew(obj);
+    this.service.createTenant(obj, this.tenantSelected, this.plantSelected, this.machineSelected, this.equipmentSelected);
     console.log(obj);
   }
 
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
+  onTenantSelection() {
+    const selectedTenant = this.tenantSelected;
+    const selectedTenantID = selectedTenant.id;
+    console.log(selectedTenantID);
+    console.log(this.plantsMiniList);
+    const plantsList = this.plantsMiniList.filter( plant => plant.tenantID === selectedTenantID)
+    console.log(plantsList);
+    this.plantsNamesList = plantsList;
   }
 
-  private getPlantIds() {
-    this.plantIds = this.service.getTenantIds();
+  onPlantSelection() {
+    const selectedPlant = this.plantSelected;
+    const selectedPlantID = selectedPlant.id;
+    console.log(selectedPlantID);
+    console.log(this.machinesMiniList);
+    const machinesList = this.machinesMiniList.filter(machine => machine.plantID === selectedPlantID)
+    console.log(machinesList);
+    this.machinesNamesList = machinesList;
   }
 
-  private getMachineIds() {
-    this.machineIds = this.service.getTenantIds();
+  onMachineSelection() {
+    const selectedMachine = this.machineSelected;
+    const selectedMachineID = selectedMachine.id;
+    console.log(selectedMachineID);
+    console.log(this.equipmentsMiniList);
+    const equipmentList = this.equipmentsMiniList.filter(equipment => equipment.machineID === selectedMachineID)
+    console.log(equipmentList);
+    this.equipmentsNamesList = equipmentList;
   }
 
-  private getEquipmentIds() {
-    this.equipmentIds = this.service.getTenantIds();
+  onEquipmentSelection() {
+    console.log('Selected Equipment ID is', this.equipmentSelected.id)
   }
 
   onSubmit() {

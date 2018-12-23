@@ -170,6 +170,11 @@ export class DevicesListComponent implements OnInit {
   }
 
   public update(screen, data) {
+    if (data.tenant_id) {
+      data.isMapped = true;
+    } else {
+      data.isMapped = false;
+    }
     this.needToUpdate.emit(data);
     this.moveTo(screen);
   }

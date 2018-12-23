@@ -28,35 +28,17 @@ export class UpdateDeviceComponent implements OnInit {
 
   public equipmentSelected;
 
-  tendentIds: any;
-  plantIds;
-  machineIds;
-  equipmentIds;
+  public isMapped: boolean;
 
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
     console.log(this.device);
-    this.getTenantIds();
-    this.getPlantIds();
-    this.getMachineIds();
-    this.getEquipmentIds();
-  }
-
-  private getTenantIds() {
-    this.tendentIds = this.service.getTenantIds();
-  }
-
-  private getPlantIds() {
-    this.plantIds = this.service.getTenantIds();
-  }
-
-  private getMachineIds() {
-    this.machineIds = this.service.getTenantIds();
-  }
-
-  private getEquipmentIds() {
-    this.equipmentIds = this.service.getTenantIds();
+    this.isMapped = this.device.isMapped;
+    this.tenantSelected = this.device.tenant_id;
+    this.plantSelected = this.device.plant_id;
+    this.machineSelected = this.device.machine_id;
+    this.equipmentSelected = this.device.equipment_id;
   }
 
   public moveTo(screen) {

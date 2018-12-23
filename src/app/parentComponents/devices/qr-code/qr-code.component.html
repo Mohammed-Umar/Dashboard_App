@@ -15,7 +15,7 @@
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12" *ngIf="qrdata">
             <qrcode [qrdata]="qrdata" [size]="256" [level]="'M'"></qrcode> <!-- guidObject.object_guid-->
           </div>
         </div>

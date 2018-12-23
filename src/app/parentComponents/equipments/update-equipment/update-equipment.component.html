@@ -25,7 +25,7 @@
                 <div class="row">
                   <div class="col-md-2">
                     <mat-form-field>
-                      <mat-select [(value)]="tenantSelected" placeholder="Tanant Name">
+                      <mat-select [(value)]="tenantSelected" placeholder="Tenant Name">
                         <mat-option *ngFor="let tenant of tenantsNamesList" [value]="tenant.id">
                           {{tenant.name}}
                         </mat-option>

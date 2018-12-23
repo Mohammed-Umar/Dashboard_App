@@ -25,36 +25,36 @@
                 <div class="row">
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="newDevice.tenant_id" placeholder="Tanant ID">
-                        <mat-option *ngFor="let id of tendentIds" [value]="id">
-                          {{id}}
+                      <mat-select [(value)]="tenantSelected" placeholder="Tenant Name">
+                        <mat-option *ngFor="let tenant of tenantsNamesList" (click)="onTenantSelection()" [value]="tenant">
+                          {{tenant.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="newDevice.plant_id" placeholder="Plant ID">
-                        <mat-option *ngFor="let id of plantIds" [value]="id">
-                          {{id}}
+                      <mat-select [(value)]="plantSelected" placeholder="Plant Name">
+                        <mat-option *ngFor="let plant of plantsNamesList" (click)="onPlantSelection()" [value]="plant">
+                          {{plant.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>                  
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="newDevice.machine_id" placeholder="Machine ID">
-                        <mat-option *ngFor="let id of machineIds" [value]="id">
-                          {{id}}
+                      <mat-select [(value)]="machineSelected" placeholder="Machine Name">
+                        <mat-option *ngFor="let machine of machinesNamesList" (click)="onMachineSelection()" [value]="machine">
+                          {{machine.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>                  
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="newDevice.equipment_id" placeholder="Equipment ID">
-                        <mat-option *ngFor="let id of equipmentIds" [value]="id">
-                          {{id}}
+                      <mat-select [(value)]="equipmentSelected" placeholder="Equipment Name">
+                        <mat-option *ngFor="let equipment of equipmentsNamesList" (click)="onEquipmentSelection()" [value]="equipment">
+                          {{equipment.name}}
                         </mat-option>
                       </mat-select>
                     </mat-form-field>
