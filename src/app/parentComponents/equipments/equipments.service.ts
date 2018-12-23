@@ -16,11 +16,21 @@ export class EquipmentsService {
 
   public headers = ['Id', 'Name', 'Description' ];
 
-  public equipmentsUrl = 'equipments'
+  public equipmentsUrl = 'equipments';
+
+  private _guidType = 'equipment';
 
   public equipmentsSubject: BehaviorSubject<Array<any>> = new BehaviorSubject([]);
 
   public equipmentsList = this.equipmentsSubject.asObservable();
+
+  public guidSubject = new BehaviorSubject([]);
+
+  public guidObject = this.guidSubject.asObservable();
+
+  public fetchEquipmentNames: BehaviorSubject<any> = new BehaviorSubject([])
+
+  public getEquipmentNames = this.fetchEquipmentNames.asObservable();
 
   constructor(
     private tenantService: TenantsService,
@@ -65,6 +75,13 @@ export class EquipmentsService {
     })
   }
 
+  public getGuid(id) {
+    this._sharedService.getGuid(id, this._guidType).subscribe(obj => {
+      this.guidSubject.next(obj);
+      return obj;
+    })
+  }
+
   public delete(id) {
     this._sharedService.deleteItem(this.equipmentsUrl, id).subscribe(res => {
       console.log(res);
@@ -105,6 +122,28 @@ export class EquipmentsService {
     equipment.plant_id = plant.id;
     equipment.machine_id = machine.id;
     this.updateTenant(equipment.id, equipment);
+  }
+
+  public getNames() {
+    this.getTenants();
+    this.equipmentsList.subscribe(list => {
+      console.log(list);
+      const reduce = list.reduce((finalList, obj) => {
+        console.log(obj)
+        const id = obj.id;
+        const name = obj.name;
+        const tenantID = obj.tenant_id;
+        const plantID = obj.plant_id;
+        const machineID = obj.machine_id;
+        finalList.push({id, name, tenantID, plantID, machineID});
+        return finalList;
+      } , [])
+      console.log('REDUCE', reduce);
+      const namesList = list.map(obj => obj.name);
+      console.log(namesList);
+      this.fetchEquipmentNames.next(reduce);
+      return reduce;
+    });
   }
 
   private _getRandomNum(min, max) {

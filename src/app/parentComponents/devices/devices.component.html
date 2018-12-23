@@ -1,4 +1,6 @@
 
-<app-devices-list *ngIf="activeScreen === 'list'" (needToUpdate)=toUpdate($event) (changeScreen)=changeScreen($event)></app-devices-list>
-<app-add-new-device *ngIf="activeScreen === 'new'" (changeScreen)=changeScreen($event)></app-add-new-device>
-<app-update-device *ngIf="activeScreen === 'update'" [device]="deviceToUpdate" (changeScreen)=changeScreen($event)></app-update-device>
+<app-devices-list *ngIf="activeScreen === 'list'" [preSelectedList]="currentSelectedList" [equipmentsMiniList]="equipmentsMiniList" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" (showDetails)=showDetails($event) (needToUpdate)=toUpdate($event) (changeScreen)=changeScreenFromList($event)></app-devices-list>
+<app-add-new-device *ngIf="activeScreen === 'new'" [equipmentsMiniList]="equipmentsMiniList" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" (changeScreen)=changeScreen($event)></app-add-new-device>
+<app-update-device *ngIf="activeScreen === 'update'" [equipmentsMiniList]="equipmentsMiniList" [machinesMiniList]="machinesMiniList" [plantsMiniList]="plantsMiniList" [tenantsNamesList]="tenantsNamesList" [device]="deviceToUpdate" (changeScreen)=changeScreen($event)></app-update-device>
+<app-details *ngIf="activeScreen === 'details'" (needToUpdate)=toUpdate($event) [device]="deviceDetails" (changeScreen)=changeScreen($event)></app-details>
+<app-qr-code *ngIf="activeScreen === 'qr-code'" (changeScreen)=changeScreen($event)></app-qr-code>

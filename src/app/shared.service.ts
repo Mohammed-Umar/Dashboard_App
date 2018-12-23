@@ -15,6 +15,10 @@ export class SharedService {
    */
   readonly url = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/';
 
+  readonly guidUrl = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/resource?'
+
+  // urlGuid = 'id=95&type=equipment';
+
 
   // public list;
 
@@ -29,10 +33,21 @@ export class SharedService {
         return res['list'];
       }
       console.error('This API responce is not success', res);
+      return res;
     }).catch(err => {
       console.error('There is some issue with this GET LIST API', err);
       return err;
     });
+  }
+
+  getGuid(id, type) {
+    const url = this.guidUrl + 'id=' + id + '&type=' + type;
+    return this._http.get(url).map(res => {
+      if (res['list'] !== null) {
+        return res['list'];
+      }
+      return null;
+    })
   }
 
   createItem(item: string, data) {

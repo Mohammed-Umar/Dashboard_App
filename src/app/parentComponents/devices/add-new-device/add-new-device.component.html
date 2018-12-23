@@ -3,14 +3,27 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-danger">
+            <!-- <div class="card-header card-header-danger">
               <h4 class="card-title">Add New Device</h4>
               <p class="card-category">Fill all the fields</p>
+            </div> -->
+            <div class="card-header card-header-danger">
+              <div class="row">
+                <div class="col-md-11">
+                  <h4 class="card-title">Add New Device</h4>
+                  <p class="card-category">Fill all the fields</p>
+                </div>
+                <div class="col-md-1">
+                  <a (click)="moveTo('list')">
+                    <i class="material-icons pull-right">close</i>
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="card-body">
               <form (ngSubmit)="onSubmit()">
                 <div class="row">
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field>
                       <mat-select [(value)]="newDevice.tenant_id" placeholder="Tanant ID">
                         <mat-option *ngFor="let id of tendentIds" [value]="id">
@@ -19,7 +32,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field>
                       <mat-select [(value)]="newDevice.plant_id" placeholder="Plant ID">
                         <mat-option *ngFor="let id of plantIds" [value]="id">
@@ -28,7 +41,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>                  
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field>
                       <mat-select [(value)]="newDevice.machine_id" placeholder="Machine ID">
                         <mat-option *ngFor="let id of machineIds" [value]="id">
@@ -37,7 +50,7 @@
                       </mat-select>
                     </mat-form-field>
                   </div>                  
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field>
                       <mat-select [(value)]="newDevice.equipment_id" placeholder="Equipment ID">
                         <mat-option *ngFor="let id of equipmentIds" [value]="id">
@@ -51,22 +64,9 @@
                       <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="newDevice.name" required>
                     </mat-form-field>
                   </div>
-                  <div class="col-md-2">
-                    <mat-form-field class="example-full-width">
-                      <input matInput placeholder="App Object Id" type="text" name="App Object Id" [(ngModel)]="newDevice.app_object_id" required>
-                    </mat-form-field>
-                  </div>
-                  <div class="col-md-10">
+                  <div class="col-md-8">
                     <mat-form-field class="example-full-width">
                       <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="newDevice.description" required>
-                    </mat-form-field>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-12">
-                    <label>Additional Info</label>
-                    <mat-form-field class="example-full-width">
-                      <textarea matInput placeholder="Give Additional information" name="Info" [(ngModel)]="newDevice.additional_info" required></textarea>
                     </mat-form-field>
                   </div>
                 </div>

@@ -34,4 +34,9 @@ export class DetailsComponent implements OnInit {
     this.moveTo(screen);
   }
 
+  public generateQR(screen, id) {
+    this.service.getGuid(id);
+    this.moveTo(screen);
+  }
+
 }

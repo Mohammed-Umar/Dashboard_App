@@ -12,12 +12,12 @@ export class DetailsComponent implements OnInit {
 
   @Output() needToUpdate = new EventEmitter<any>();
 
-  @Input() plant;
+  @Input() device;
 
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
-    console.log(this.plant)
+    console.log(this.device)
   }
 
   public moveTo(screen) {
@@ -25,12 +25,17 @@ export class DetailsComponent implements OnInit {
   }
 
   public update(screen) {
-    this.needToUpdate.emit(this.plant);
+    this.needToUpdate.emit(this.device);
     this.moveTo(screen);
   }
 
   public delete(screen) {
-    // this.service.delete(this.plant.id);
+    this.service.delete(this.device.id);
+    this.moveTo(screen);
+  }
+
+  public generateQR(screen, id) {
+    this.service.getGuid(id);
     this.moveTo(screen);
   }
 

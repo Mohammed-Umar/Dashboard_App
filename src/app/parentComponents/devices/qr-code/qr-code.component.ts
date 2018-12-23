@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { EquipmentsService } from '../equipments.service';
+import { DevicesService } from '../devices.service';
 
 @Component({
   selector: 'app-qr-code',
@@ -14,7 +14,7 @@ export class QrCodeComponent implements OnInit {
 
   public guidObject;
 
-  constructor(private _service: EquipmentsService) { }
+  constructor(private _service: DevicesService) { }
 
   ngOnInit() {
     this.qrdata = 'Initial QR code data string';

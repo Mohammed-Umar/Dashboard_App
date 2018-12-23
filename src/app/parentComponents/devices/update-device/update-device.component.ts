@@ -12,8 +12,23 @@ export class UpdateDeviceComponent implements OnInit {
 
   @Input() device;
 
-  tendentIds: any;
+  @Input() tenantsNamesList;
 
+  @Input() plantsMiniList;
+
+  @Input() machinesMiniList;
+
+  @Input() equipmentsMiniList;
+
+  public tenantSelected;
+
+  public plantSelected;
+
+  public machineSelected;
+
+  public equipmentSelected;
+
+  tendentIds: any;
   plantIds;
   machineIds;
   equipmentIds;
@@ -48,8 +63,14 @@ export class UpdateDeviceComponent implements OnInit {
     this.changeScreen.emit(screen);
   }
 
+  // public onSubmit() {
+  //   this.service.update(this.device);
+  //   console.log(this.device);
+  //   this.moveTo('list');
+  // }
+
   public onSubmit() {
-    this.service.update(this.device);
+    this.service.update(this.device, this.tenantSelected, this.plantSelected, this.machineSelected, this.equipmentSelected);
     console.log(this.device);
     this.moveTo('list');
   }

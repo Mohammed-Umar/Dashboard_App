@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { DevicesService } from '../devices.service';
 
 @Component({
@@ -9,6 +9,14 @@ import { DevicesService } from '../devices.service';
 export class AddNewDeviceComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
+
+  @Input() machinesMiniList;
+
+  @Input() plantsMiniList;
+
+  @Input() tenantsNamesList;
+
+  @Input() equipmentsMiniList;
 
   newDevice: any = {};
   tendentIds;

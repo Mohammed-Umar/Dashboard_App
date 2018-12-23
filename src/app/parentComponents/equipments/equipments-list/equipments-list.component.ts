@@ -53,14 +53,17 @@ export class EquipmentsListComponent implements OnInit {
       console.log('preSelectedList is not undefined')
       this.tenantSelected = this.preSelectedList.tenantID;
       this.plantSelected = this.preSelectedList.plantID;
-      this.generateFilteredMachines(this.preSelectedList.tenantID, this.preSelectedList.plantID);
+      this.machineSelected = this.preSelectedList.machineID;
+      this.generateFilteredMachines(this.tenantSelected, this.plantSelected, this.machineSelected);
     } else {
       console.log('preSelectedList is undefined')
     }
   }
 
-  generateFilteredMachines(tenantID, plantID) {
-    const filteredList = this.mainEquipmentsList.filter(obj => obj.tenant_id === tenantID && obj.plant_id === plantID);
+  generateFilteredMachines(tenantID, plantID, machineID) {
+    const filteredList = this.mainEquipmentsList.filter(obj => obj.tenant_id === tenantID &&
+      obj.plant_id === plantID &&
+      obj.machine_id === machineID);
     console.log(filteredList);
     this.equipments = filteredList;
     this.showlist = true;

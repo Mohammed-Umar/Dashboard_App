@@ -6,7 +6,10 @@ import { DevicesListComponent } from './devices-list/devices-list.component';
 import { AddNewDeviceComponent } from './add-new-device/add-new-device.component';
 import { UpdateDeviceComponent } from './update-device/update-device.component';
 import { DetailsComponent } from './details/details.component';
+import { QrCodeComponent } from './qr-code/qr-code.component';
 import { DevicesService } from './devices.service';
+
+import { QRCodeModule } from 'angularx-qrcode';
 
 import {
   MatButtonModule,
@@ -27,13 +30,15 @@ import {
     MatFormFieldModule,
     MatTooltipModule,
     MatSelectModule,
+    QRCodeModule,
   ],
   declarations: [
     DevicesComponent,
     DevicesListComponent,
     AddNewDeviceComponent,
     UpdateDeviceComponent,
-    DetailsComponent
+    DetailsComponent,
+    QrCodeComponent
   ],
   providers: [DevicesService]
 })

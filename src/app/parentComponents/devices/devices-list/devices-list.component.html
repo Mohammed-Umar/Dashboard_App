@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-danger">
+            <!-- <div class="card-header card-header-danger">
               <div class="row">
                 <div class="col-md-10">
                     <h4 class="card-title ">Devices List</h4>
@@ -11,8 +11,56 @@
                 </div>
               <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
               </div>
+            </div> -->
+            <div class="card-header card-header-danger">
+              <div class="row">
+                <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h4 class="card-title ">Devices List</h4>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field>
+                        <mat-select [(value)]="tenantSelected" placeholder="Tanant Names">
+                          <mat-option *ngFor="let names of tenantsNamesList" (click)="onTenantSelection()" [value]="names">
+                            {{names.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field>
+                        <mat-select [(value)]="plantSelected" placeholder="Plant Names">
+                          <mat-option *ngFor="let names of plantsNamesList" (click)="onPlantSelection()" [value]="names">
+                            {{names.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field>
+                        <mat-select [(value)]="machineSelected" placeholder="Machine Names">
+                          <mat-option *ngFor="let names of machinesNamesList" (click)="onMachineSelection()" [value]="names">
+                            {{names.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                    <div class="col-md-2">
+                      <mat-form-field>
+                        <mat-select [(value)]="equipmentSelected" placeholder="Equipment Names">
+                          <mat-option *ngFor="let names of equipmentsNamesList" (click)="optionsSelected()" [value]="names">
+                            {{names.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
+              </div>
             </div>
-            <div class="card-body">
+            <div class="card-body" *ngIf="areDevicesAvailable()">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -32,29 +80,31 @@
                         {{  device.description }}
                       </td>
                       <td>
-                        {{ device.additional_info }}
-                      </td>
-                      <td class="text-center">
-                        {{ device.tenant_id }}
-                      </td>
-                      <td class="text-center">
-                        {{ device.plant_id }}
-                      </td>
-                      <td class="text-center">
-                        {{ device.machine_id }}
-                      </td>
-                      <td class="text-center">
-                        {{ device.equipment_id }}
+                        <a (click)="openDetails('details', device)" class="btn btn-primary btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        Details                        
+                        </a>
                       </td>
                       <td>
-                        <a (click)="update('update', device)" class="btn btn-success btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        <a (click)="update('update', device)" class="btn btn-warning btn-round pull-right"> <!-- (click)="moveTo('update')" -->
                         Update                        
                         </a>
+                      </td>
+                      <td>
+                        <a (click)="delete('list', device)" class="btn btn-danger btn-round pull-right">
+                          <i class="material-icons">delete_outline</i>
+                          DELETE
+                        </a>
+                        
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+            </div>
+            <div class="card-body" *ngIf="!areDevicesAvailable()" >
+              <p>
+                No Devices are available.
+              </p>
             </div>
           </div>
         </div>

@@ -54,7 +54,7 @@
             <div class="row">
               <button mat-raised-button (click)="update('update')" class="col-md-2 btn btn-warning btn-round pull-right">Update</button>
               <button mat-raised-button (click)="delete('list')" class="col-md-2 btn btn-danger btn-round pull-right">Delete</button>
-              <button mat-raised-button (click)="moveTo('qr-code')" class="col-md-2 btn btn-danger btn-round pull-right">Generate QR CODE</button>
+              <button mat-raised-button (click)="generateQR('qr-code', equipment.id)" class="col-md-2 btn btn-success btn-round pull-right">Generate QR CODE</button>
             </div>
           </div>
         </div>
