@@ -17,12 +17,15 @@
             </div>
           </div>
           <div class="card-body">
-            <form (ngSubmit)="onSubmit()">
-              <div class="row">
+            <form (ngSubmit)="onSubmit()" [formGroup]="addNewForm">
+              <div class="row"> 
                 <div class="col-md-4">
                   <mat-form-field class="example-full-width">
-                    <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="newTenant.name" required>
+                    <input matInput type="text" placeholder="Name" name="Name" required [formControl]="nameFormControl">
                   </mat-form-field>
+                  <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+                      This field must be filled & must be of length more than 4
+                  </mat-error>
                 </div>
                 <!-- <div class="col-md-4">
                   <mat-form-field class="example-full-width">
@@ -31,8 +34,12 @@
                 </div> -->
                 <div class="col-md-8">
                   <mat-form-field class="example-full-width">
-                    <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="newTenant.description" required>
+                    <input matInput type="text" placeholder="Description" name="Description"
+                      required [formControl]="descriptionFormControl">
                   </mat-form-field>
+                  <mat-error *ngIf="descriptionFormControl.invalid && (descriptionFormControl.dirty || descriptionFormControl.touched)">
+                      This field must be filled & must be of length more than 4
+                  </mat-error>
                 </div>
               </div>
               <!-- <div class="row">
@@ -41,15 +48,16 @@
                   <mat-form-field class="example-full-width">
                     <textarea matInput placeholder="Give Additional information" name="Info" [(ngModel)]="newTenant.additional_info" required></textarea>
                   </mat-form-field> -->
-                  <!-- <div class="form-group">                    
+              <!-- <div class="form-group">                    
                     <div class="form-group">
                       <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
                       <textarea class="form-control" rows="5"></textarea>
                     </div>
                   </div> -->
-                <!-- </div>
+              <!-- </div>
               </div> -->
-              <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Add</button> <!-- (click)="moveTo('list')"-->
+              <button mat-raised-button type="submit" [disabled]="addNewForm.invalid" class="btn btn-success btn-lg btn-block">Add</button>
+              <!-- (click)="moveTo('list')"-->
               <div class="clearfix"></div>
             </form>
           </div>

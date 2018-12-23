@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TenantsComponent } from './tenant.component'
@@ -30,6 +30,7 @@ import { DetailsComponent } from './details/details.component';
     MatFormFieldModule,
     MatTooltipModule,
     MatSelectModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AddNewTenantComponent,
