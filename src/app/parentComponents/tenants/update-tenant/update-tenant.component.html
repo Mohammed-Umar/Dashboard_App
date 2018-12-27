@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col-md-4">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Name" name="Name" value={{tenant.name}} required [formControl]="nameFormControl">
+                      <input matInput type="text" placeholder="Tenant Name" name="Name" value={{tenant.name}} required [formControl]="nameFormControl">
                     </mat-form-field>
                     <mat-error *ngIf="nameFormControl.invalid">This field must be filled & must be of length more than 4</mat-error>
                   </div>
@@ -32,7 +32,7 @@
                   </div> -->
                   <div class="col-md-8">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Description" name="Description" value={{tenant.description}} required [formControl]="descriptionFormControl">
+                      <input matInput type="text" placeholder="Tenant Description" name="Description" value={{tenant.description}} required [formControl]="descriptionFormControl">
                     </mat-form-field>
                     <mat-error *ngIf="descriptionFormControl.invalid">This field must be filled & must be of length more than 4</mat-error>
                   </div>

@@ -33,13 +33,16 @@ export class MachinesListComponent implements OnInit {
 
   public userListSelection;
 
+  public isTenantSelected = false;
+
+  public noMachinesFound = false;
+
   constructor(private service: MachinesService) { }
 
   ngOnInit() {
     this.service.getTenants();
     this.service.machinesList.subscribe(list => {
       this.mainMachinesList = list;
-      console.log(list);
       this.checkPreSelection();
     });
   }
@@ -56,25 +59,21 @@ export class MachinesListComponent implements OnInit {
   }
 
   optionsSelected() {
-    console.log(this.tenantSelected);
     const tenantID = this.tenantSelected.id;
     const plantID = this.plantSelected.id;
-    const filteredList = this.mainMachinesList.filter( obj => obj.tenant_id === tenantID && obj.plant_id === plantID);
-    console.log(filteredList);
-    this.machines = filteredList;
-    this.showlist = true;
+    this.machines = this.mainMachinesList.filter( obj => obj.tenant_id === tenantID && obj.plant_id === plantID);
+    this.checkIfMachinesFound(this.machines);
     this.userListSelection = { 'tenantID': this.tenantSelected.id, 'plantID': this.plantSelected.id };
-    // this.tenantSelected
   }
 
   onTenantSelection() {
+    this.isTenantSelected = true;
     const selectedTenant = this.tenantSelected;
     const selectedTenantID = selectedTenant.id;
-    console.log(selectedTenantID);
-    console.log(this.plantsMiniList);
     const plantsList = this.plantsMiniList.filter( plant => plant.tenantID === selectedTenantID)
-    console.log(plantsList);
     this.plantsNamesList = plantsList;
+    this.machines = this.mainMachinesList.filter(machine => machine.tenant_id === selectedTenantID);
+    this.checkIfMachinesFound(this.machines);
   }
 
   generateFilteredMachines(tenantID, plantID) {
@@ -82,6 +81,14 @@ export class MachinesListComponent implements OnInit {
     this.machines = filteredList;
     this.showlist = true;
     // this.userListSelection = { 'tenantID': this.tenantSelected.id, 'plantID': this.plantSelected.id };
+  }
+
+  checkIfMachinesFound(obj) {
+    if (obj.length < 1) {
+      this.noMachinesFound = true;
+    } else {
+      this.noMachinesFound = false;
+    }
   }
 
   public moveTo(screen) {

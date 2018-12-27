@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { PlantsComponent } from './plants.component'
@@ -30,6 +30,7 @@ import {
     MatTooltipModule,
     MatSelectModule,
     BsDropdownModule.forRoot(),
+    ReactiveFormsModule
   ],
   declarations: [
     AddNewPlantComponent,

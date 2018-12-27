@@ -120,10 +120,7 @@ export class DevicesListComponent implements OnInit {
     this.callMappedDevices();
     const selectedTenant = this.tenantSelected;
     const selectedTenantID = selectedTenant.id;
-    console.log(selectedTenantID);
-    console.log(this.plantsMiniList);
     const plantsList = this.plantsMiniList.filter(plant => plant.tenantID === selectedTenantID);
-    console.log(plantsList);
     this.plantsNamesList = plantsList;
     this.devices = this.mainDevicesList.filter(device => device.tenant_id === selectedTenantID);
     this.userListSelection = { 'tenantID': selectedTenantID };

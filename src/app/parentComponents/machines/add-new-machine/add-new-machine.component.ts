@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { MachinesService } from '../machines.service';
 
 @Component({
@@ -22,6 +24,21 @@ export class AddNewMachineComponent implements OnInit {
 
   public plantSelected;
 
+  nameFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  descriptionFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  tenantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  plantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  addNewForm: FormGroup = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl,
+    tenantID: this.tenantIDFormControl,
+    plantID: this.plantIDFormControl
+  })
+
   constructor(private service: MachinesService) { }
 
   ngOnInit() {
@@ -32,8 +49,9 @@ export class AddNewMachineComponent implements OnInit {
   }
 
   public addMachine(obj) {
+    obj.name = this.nameFormControl.value;
+    obj.description = this.descriptionFormControl.value;
     this.service.createTenant(obj, this.tenantSelected, this.plantSelected);
-    console.log(obj);
   }
 
   onSubmit() {

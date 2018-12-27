@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { DevicesService } from '../devices.service';
 
 @Component({
@@ -34,6 +36,27 @@ export class AddNewDeviceComponent implements OnInit {
 
   newDevice: any = {};
 
+  nameFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  descriptionFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  tenantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  plantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  machineIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  equipmentIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  addNewForm: FormGroup = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl,
+    tenantID: this.tenantIDFormControl,
+    plantID: this.plantIDFormControl,
+    machineID: this.machineIDFormControl,
+    equipmentID: this.equipmentIDFormControl
+  })
+
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
@@ -44,8 +67,9 @@ export class AddNewDeviceComponent implements OnInit {
   }
 
   public addDevice(obj) {
+    obj.name = this.nameFormControl.value;
+    obj.description = this.descriptionFormControl.value;
     this.service.createTenant(obj, this.tenantSelected, this.plantSelected, this.machineSelected, this.equipmentSelected);
-    console.log(obj);
   }
 
   onTenantSelection() {

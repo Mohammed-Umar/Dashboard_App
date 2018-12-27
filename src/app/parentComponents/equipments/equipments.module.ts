@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EquipmentsComponent } from './equipments.component'
 import { AddNewEquipmentComponent } from './add-new-equipment/add-new-equipment.component'
@@ -34,6 +34,7 @@ import { QrCodeComponent } from './qr-code/qr-code.component';
     MatSelectModule,
     MatCheckboxModule,
     QRCodeModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     EquipmentsComponent,

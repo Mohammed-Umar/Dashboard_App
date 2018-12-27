@@ -51,7 +51,7 @@
               <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
               </div>
             </div>
-            <div class="card-body" *ngIf="showlist">
+            <div class="card-body" *ngIf="isTenantSelected && !noEquipmentsFound">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -91,6 +91,16 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+            <div class="card-body" *ngIf="!isTenantSelected">
+              <p>
+                Please select a Tenant.
+              </p>
+            </div>
+            <div class="card-body" *ngIf="noEquipmentsFound && isTenantSelected">
+              <p>
+                There are no Equipments available for this filter.
+              </p>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@
               <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
               </div>
             </div>
-            <div class="card-body" *ngIf="showlist">
+            <div class="card-body" *ngIf="isTenantSelected && !noPlantsFound">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -65,6 +65,16 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+            <div class="card-body" *ngIf="!isTenantSelected">
+              <p>
+                Please select a Tenant.
+              </p>
+            </div>
+            <div class="card-body" *ngIf="noPlantsFound && isTenantSelected">
+              <p>
+                There are no Plants available for this Tenant.
+              </p>
             </div>
           </div>
         </div>

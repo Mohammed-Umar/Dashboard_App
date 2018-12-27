@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
 import { MachinesService } from '../machines.service';
 
 @Component({
@@ -24,20 +26,37 @@ export class UpdateMachineComponent implements OnInit {
 
   plantIds: any;
 
+  nameFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  descriptionFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  addNewForm: FormGroup = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl
+  })
+
   constructor(private service: MachinesService) { }
 
   ngOnInit() {
     console.log(this.machine);
     this.tenantSelected = this.machine.tenant_id;
     this.plantSelected = this.machine.plant_id;
+    this.nameFormControl.patchValue(this.machine.name);
+    this.descriptionFormControl.patchValue(this.machine.description);
   }
 
   public moveTo(screen) {
     this.changeScreen.emit(screen);
   }
 
+  private _update(obj) {
+    obj.name = this.nameFormControl.value;
+    obj.description = this.descriptionFormControl.value;
+    this.service.update(obj, this.tenantSelected, this.plantSelected);
+   }
+
   public onSubmit() {
-    this.service.update(this.machine, this.tenantSelected, this.plantSelected);
+    this._update(this.machine);
     console.log(this.machine);
     this.moveTo('list');
   }

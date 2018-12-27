@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DevicesComponent } from './devices.component';
 import { DevicesListComponent } from './devices-list/devices-list.component';
 import { AddNewDeviceComponent } from './add-new-device/add-new-device.component';
@@ -31,6 +31,7 @@ import {
     MatTooltipModule,
     MatSelectModule,
     QRCodeModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     DevicesComponent,

@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { PlantsService } from '../plants.service';
 
 @Component({
@@ -16,6 +18,18 @@ export class AddNewPlantComponent implements OnInit {
 
   public tenantSelected;
 
+  nameFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  descriptionFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  tenantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  addNewForm: FormGroup = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl,
+    tenantID: this.tenantIDFormControl
+  })
+
   constructor(private service: PlantsService) { }
 
   ngOnInit() {
@@ -28,6 +42,8 @@ export class AddNewPlantComponent implements OnInit {
   }
 
   public addTenant(obj) {
+    obj.name = this.nameFormControl.value;
+    obj.description = this.descriptionFormControl.value;
     this.service.createTenant(obj, this.tenantSelected);
   }
 

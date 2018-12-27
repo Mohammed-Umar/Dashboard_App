@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="card-body">
-              <form (ngSubmit)="onSubmit()">
+              <form (ngSubmit)="onSubmit()" [formGroup]="addNewForm">
                 <div class="row">
                   <div *ngIf="isMapped" style="margin:0 15px">
                     <div class="row" >
@@ -66,16 +66,18 @@
                   <!-- <p>{{ device.tenant_id }}</p> -->
                   <div class="col-md-4">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="device.name" required>
+                      <input matInput type="text" placeholder="Device Name" name="Name" value={{device.name}} [formControl]="nameFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="nameFormControl.invalid">This field must be filled & must be of length more than 4</mat-error>
                   </div>
                   <div class="col-md-8">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="device.description" required>
+                      <input matInput type="text" placeholder="Device Description" name="Description" value={{device.description}} [formControl]="descriptionFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="descriptionFormControl.invalid">This field must be filled & must be of length more than 4</mat-error>
                   </div>
                 </div>
-                <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Update</button> <!-- (click)="moveTo('list')"-->
+                <button mat-raised-button type="submit" [disabled]="addNewForm.invalid" class="btn btn-success btn-lg btn-block">Update</button> <!-- (click)="moveTo('list')"-->
                 <div class="clearfix"></div>
               </form>
             </div>

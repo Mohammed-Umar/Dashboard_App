@@ -24,24 +24,27 @@ export class PlantsListComponent implements OnInit {
 
   public headers = this.service.headers;
 
+  public isTenantSelected = false;
+
+  public noPlantsFound = false;
+
   constructor(private service: PlantsService) { }
 
   ngOnInit() {
     this.service.getTenants();
     this.service.plantsList.subscribe(list => {
       this.mainPlantsList = list;
-      console.log(this.plants);
     });
   }
 
   optionSelected() {
-    console.log(this.tenantSelected);
     const tenantID = this.tenantSelected.id;
-    const filteredList = this.mainPlantsList.filter( obj => obj.tenant_id === tenantID );
-    console.log(filteredList);
-    this.plants = filteredList;
-    this.showlist = true;
-    // this.tenantSelected
+    this.plants = this.mainPlantsList.filter( obj => obj.tenant_id === tenantID );
+    if (this.plants.length < 1) {
+      this.noPlantsFound = true;
+    } else {
+      this.noPlantsFound = false;
+    }
   }
 
   public moveTo(screen) {

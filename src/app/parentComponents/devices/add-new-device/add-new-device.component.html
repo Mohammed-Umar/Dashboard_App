@@ -3,10 +3,6 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <!-- <div class="card-header card-header-danger">
-              <h4 class="card-title">Add New Device</h4>
-              <p class="card-category">Fill all the fields</p>
-            </div> -->
             <div class="card-header card-header-danger">
               <div class="row">
                 <div class="col-md-11">
@@ -21,11 +17,11 @@
               </div>
             </div>
             <div class="card-body">
-              <form (ngSubmit)="onSubmit()">
+              <form (ngSubmit)="onSubmit()" [formGroup]="addNewForm">
                 <div class="row">
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="tenantSelected" placeholder="Tenant Name">
+                      <mat-select [(value)]="tenantSelected" placeholder="Tenant Name" [formControl]="tenantIDFormControl" required>
                         <mat-option *ngFor="let tenant of tenantsNamesList" (click)="onTenantSelection()" [value]="tenant">
                           {{tenant.name}}
                         </mat-option>
@@ -34,7 +30,7 @@
                   </div>
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="plantSelected" placeholder="Plant Name">
+                      <mat-select [(value)]="plantSelected" placeholder="Plant Name" [formControl]="plantIDFormControl" required>
                         <mat-option *ngFor="let plant of plantsNamesList" (click)="onPlantSelection()" [value]="plant">
                           {{plant.name}}
                         </mat-option>
@@ -43,7 +39,7 @@
                   </div>                  
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="machineSelected" placeholder="Machine Name">
+                      <mat-select [(value)]="machineSelected" placeholder="Machine Name" [formControl]="machineIDFormControl" required>
                         <mat-option *ngFor="let machine of machinesNamesList" (click)="onMachineSelection()" [value]="machine">
                           {{machine.name}}
                         </mat-option>
@@ -52,7 +48,7 @@
                   </div>                  
                   <div class="col-md-3">
                     <mat-form-field>
-                      <mat-select [(value)]="equipmentSelected" placeholder="Equipment Name">
+                      <mat-select [(value)]="equipmentSelected" placeholder="Equipment Name" [formControl]="equipmentIDFormControl" required>
                         <mat-option *ngFor="let equipment of equipmentsNamesList" (click)="onEquipmentSelection()" [value]="equipment">
                           {{equipment.name}}
                         </mat-option>
@@ -61,16 +57,22 @@
                   </div>
                   <div class="col-md-4">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Name" name="Name" [(ngModel)]="newDevice.name" required>
+                      <input matInput type="text" placeholder="Device Name" name="Name" [formControl]="nameFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+                      This field must be filled & must be of length more than 4
+                    </mat-error>
                   </div>
                   <div class="col-md-8">
                     <mat-form-field class="example-full-width">
-                      <input matInput type="text" placeholder="Description" name="Description" [(ngModel)]="newDevice.description" required>
+                      <input matInput type="text" placeholder="Device Description" name="Description" [formControl]="descriptionFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="descriptionFormControl.invalid && (descriptionFormControl.dirty || descriptionFormControl.touched)">
+                      This field must be filled & must be of length more than 4
+                    </mat-error>
                   </div>
                 </div>
-                <button mat-raised-button type="submit" class="btn btn-success btn-lg btn-block">Add</button> <!-- (click)="moveTo('list')"-->
+                <button mat-raised-button type="submit" [disabled]="addNewForm.invalid" class="btn btn-success btn-lg btn-block">Add</button> <!-- (click)="moveTo('list')"-->
                 <div class="clearfix"></div>
               </form>
             </div>

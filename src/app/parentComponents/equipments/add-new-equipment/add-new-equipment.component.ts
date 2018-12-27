@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { EquipmentsService } from '../equipments.service';
 
 @Component({
@@ -32,9 +34,41 @@ export class AddNewEquipmentComponent implements OnInit {
 
   public labelPosition = 'before';
 
+  nameFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  descriptionFormControl: FormControl = new FormControl('', Validators.minLength(5));
+
+  tenantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  plantIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  machineIDFormControl: FormControl = new FormControl('', Validators.required);
+
+  isCriticalFormControl: FormControl = new FormControl();
+
+  capacityFormControl: FormControl = new FormControl();
+
+  rpmFormControl: FormControl = new FormControl();
+
+  polesFormControl: FormControl = new FormControl();
+
+  addNewForm: FormGroup = new FormGroup({
+    name: this.nameFormControl,
+    description: this.descriptionFormControl,
+    tenantID: this.tenantIDFormControl,
+    plantID: this.plantIDFormControl,
+    machineID: this.machineIDFormControl,
+    isCritical: this.isCriticalFormControl,
+    capacity: this.capacityFormControl,
+    rpm: this.rpmFormControl,
+    poles: this.polesFormControl
+  })
+
   constructor(private service: EquipmentsService) { }
 
   ngOnInit() {
+    this.isCriticalFormControl.setValue(this.isCritical);
+    // this.tenantSelected = this.newEquipment.
   }
 
   public moveTo(screen) {
@@ -42,9 +76,10 @@ export class AddNewEquipmentComponent implements OnInit {
   }
 
   public addEquipment(obj) {
-    obj.is_critical = this.isCritical;
+    obj.is_critical = this.isCriticalFormControl.value;
+    obj.name = this.nameFormControl.value;
+    obj.description = this.descriptionFormControl.value;
     this.service.createTenant(obj, this.tenantSelected, this.plantSelected, this.machineSelected);
-    console.log(obj);
   }
 
   onSubmit() {

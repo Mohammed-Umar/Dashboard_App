@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MachinesComponent } from './machines.component'
 import { AddNewMachineComponent } from './add-new-machine/add-new-machine.component'
@@ -28,6 +28,7 @@ import {
     MatFormFieldModule,
     MatTooltipModule,
     MatSelectModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     MachinesComponent,
