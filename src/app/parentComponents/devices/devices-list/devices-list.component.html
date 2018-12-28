@@ -22,7 +22,7 @@
                     <div class="col-md-2">
                       <mat-form-field>
                         <mat-select [(value)]="tenantSelected" placeholder="Tenant Names">
-                          <mat-option *ngFor="let names of tenantsNamesList" (click)="onTenantSelection()" [value]="names">
+                          <mat-option *ngFor="let names of tenantsNamesList" (click)="onTenantSelection()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>
@@ -31,7 +31,7 @@
                     <div class="col-md-2">
                       <mat-form-field>
                         <mat-select [(value)]="plantSelected" placeholder="Plant Names">
-                          <mat-option *ngFor="let names of plantsNamesList" (click)="onPlantSelection()" [value]="names">
+                          <mat-option *ngFor="let names of plantsNamesList" (click)="onPlantSelection()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>
@@ -40,7 +40,7 @@
                     <div class="col-md-2">
                       <mat-form-field>
                         <mat-select [(value)]="machineSelected" placeholder="Machine Names">
-                          <mat-option *ngFor="let names of machinesNamesList" (click)="onMachineSelection()" [value]="names">
+                          <mat-option *ngFor="let names of machinesNamesList" (click)="onMachineSelection()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>
@@ -49,7 +49,7 @@
                     <div class="col-md-2">
                       <mat-form-field>
                         <mat-select [(value)]="equipmentSelected" placeholder="Equipment Names">
-                          <mat-option *ngFor="let names of equipmentsNamesList" (click)="optionsSelected()" [value]="names">
+                          <mat-option *ngFor="let names of equipmentsNamesList" (click)="optionsSelected()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>
@@ -60,7 +60,7 @@
               <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
               </div>
             </div>
-            <div class="card-body" *ngIf="areDevicesAvailable()">
+            <div class="card-body" *ngIf="!noDevicesFound && !emptyDevicepool">
               <div class="table-responsive">
                 <table class="table">
                   <thead class=" text-primary">
@@ -101,9 +101,14 @@
                 </table>
               </div>
             </div>
-            <div class="card-body" *ngIf="!areDevicesAvailable()" >
+            <div class="card-body" *ngIf="noDevicesFound" >
               <p>
-                No Devices are available.
+                No Devices are available for this filter.
+              </p>
+            </div>
+            <div class="card-body" *ngIf="emptyDevicepool" >
+              <p>
+                No unmapped Devices are available.
               </p>
             </div>
           </div>

@@ -42,11 +42,80 @@ export class DevicesListComponent implements OnInit {
 
   public userListSelection;
 
+  public emptyDevicepool = false;
+
+  public noDevicesFound = false;
+
+  public preferenceVariable = 'devices-user-preference';
+
   constructor(private service: DevicesService) { }
 
   ngOnInit() {
-    this.checkPreSelection();
+    // this.checkPreSelection();
+    this.deviceWay();
   }
+
+  deviceWay() {
+    this.callDevicePool();
+  }
+
+  // checkPreference() {
+  //   const preference = localStorage.getItem(this.preferenceVariable);
+  //   const preferenceJson = JSON.parse(preference);
+  //   if (preferenceJson !== null) {
+  //     this.tenantSelected = preferenceJson.tenantID;
+  //     this.plantSelected = preferenceJson.plantID;
+  //     this.machineSelected = preferenceJson.machineID;
+  //     this.equipmentSelected = preferenceJson.equipmentID;
+  //     this.showPreference();
+  //   } else {
+  //     this.callDevicePool();
+  //   }
+  // }
+
+  // showPreference() {
+  //   this.callMappedDevices();
+  //   this.emptyDevicepool = false;
+  //   const tenantID = this.tenantSelected;
+  //   const plantID = this.plantSelected;
+  //   const machineID = this.machineSelected;
+  //   const equipmentID = this.equipmentSelected;
+  //   if (tenantID !== undefined && plantID !== undefined && machineID !== undefined && equipmentID !== undefined) {
+  //     this.allPreSelected(tenantID, plantID, machineID);
+  //   } else if (tenantID !== undefined && plantID !== undefined && machineID !== undefined) {
+  //     this.TenantPlantMachinePreSelected(tenantID, plantID);
+  //   } else if (tenantID !== undefined && plantID !== undefined) {
+  //     this.teanatAndPlantPreSelected(tenantID);
+  //   } else if (tenantID !== undefined) {
+  //     this.onlyTenantPreSelected();
+  //   }
+  // }
+
+  // onlyTenantPreSelected() {
+  //   // this.callMappedDevices();
+  //   this.onTenantSelection()
+  // }
+
+  // teanatAndPlantPreSelected(tenantID) {
+  //   // this.callMappedDevices();
+  //   this.generatePlantsNames(tenantID);
+  //   this.onPlantSelection();
+  // }
+
+  // TenantPlantMachinePreSelected(tenantID, plantID) {
+  //   // this.callMappedDevices();
+  //   this.generatePlantsNames(tenantID);
+  //   this.generateMachinesNames(plantID);
+  //   this.onMachineSelection();
+  // }
+
+  // allPreSelected(tenantID, plantID, machineID) {
+  //   // this.callMappedDevices();
+  //   this.generatePlantsNames(tenantID);
+  //   this.generateMachinesNames(plantID);
+  //   this.generateEquipmentsNames(machineID);
+  //   this.optionsSelected();
+  // }
 
   checkPreSelection() {
     if (this.preSelectedList !== undefined) {
@@ -72,7 +141,11 @@ export class DevicesListComponent implements OnInit {
     this.service.devicesList.subscribe(list => {
       this.mainDevicesList = list;
       this.devices = this.mainDevicesList;
-      console.log(list);
+      if (this.devices.length < 1) {
+        this.emptyDevicepool = true;
+      } else {
+        this.emptyDevicepool = false;
+      }
     });
   }
 
@@ -80,7 +153,6 @@ export class DevicesListComponent implements OnInit {
     this.service.getMappedDevices();
     this.service.devicesList.subscribe(list => {
       this.mainDevicesList = list;
-      console.log(list);
     });
   }
 
@@ -96,66 +168,87 @@ export class DevicesListComponent implements OnInit {
   }
 
   optionsSelected() {
-    console.log(this.tenantSelected);
-    const tenantID = this.tenantSelected.id;
-    const plantID = this.plantSelected.id;
-    const machineID = this.machineSelected.id;
-    const equipmentID = this.equipmentSelected.id;
-    console.log(tenantID);
-    console.log(plantID);
-    console.log(machineID);
-    console.log(equipmentID);
-    const filteredList = this.mainDevicesList.filter(obj => obj.tenant_id === tenantID &&
+    const tenantID = this.tenantSelected;
+    const plantID = this.plantSelected;
+    const machineID = this.machineSelected;
+    const equipmentID = this.equipmentSelected;
+    this.devices = this.mainDevicesList.filter(obj => obj.tenant_id === tenantID &&
       obj.plant_id === plantID &&
       obj.machine_id === machineID &&
       obj.equipment_id === equipmentID);
-    console.log(filteredList);
-    this.devices = filteredList;
-    this.showlist = true;
-    this.userListSelection = { 'tenantID': tenantID, 'plantID': plantID, 'machineID': machineID, 'equipmentID': equipmentID };
+    this.checkIfDevicesFound(this.devices);
+    // this.setUserPreference(tenantID, plantID, machineID, equipmentID);
+    // this.showlist = true;
+    // this.userListSelection = { 'tenantID': tenantID, 'plantID': plantID, 'machineID': machineID, 'equipmentID': equipmentID };
     // this.tenantSelected
   }
 
   onTenantSelection() {
     this.callMappedDevices();
-    const selectedTenant = this.tenantSelected;
-    const selectedTenantID = selectedTenant.id;
-    const plantsList = this.plantsMiniList.filter(plant => plant.tenantID === selectedTenantID);
-    this.plantsNamesList = plantsList;
+    const selectedTenantID = this.tenantSelected;
+    this.generatePlantsNames(selectedTenantID);
     this.devices = this.mainDevicesList.filter(device => device.tenant_id === selectedTenantID);
-    this.userListSelection = { 'tenantID': selectedTenantID };
+    this.checkIfDevicesFound(this.devices);
+    // this.setUserPreference(selectedTenantID);
+    // this.userListSelection = { 'tenantID': selectedTenantID };
+  }
+
+  generatePlantsNames(tenantID) {
+    const plantsList = this.plantsMiniList.filter(plant => plant.tenantID === tenantID)
+    this.plantsNamesList = plantsList;
   }
 
   onPlantSelection() {
-    const selectedPlant = this.plantSelected;
-    const selectedPlantID = selectedPlant.id;
-    const tenantID = this.tenantSelected.id;
-    console.log(selectedPlantID);
-    console.log(this.machinesMiniList);
-    console.log(this.plantsNamesList);
-    const machinesList = this.machinesMiniList.filter(machine => machine.plantID === selectedPlantID)
-    console.log(machinesList);
-    this.machinesNamesList = machinesList;
+    const selectedPlantID = this.plantSelected;
+    const tenantID = this.tenantSelected;
+    this.generateMachinesNames(selectedPlantID);
     this.devices = this.mainDevicesList.filter(device => device.tenant_id === tenantID && device.plant_id === selectedPlantID);
-    this.userListSelection = { 'tenantID': tenantID, 'plantID': selectedPlantID };
+    this.checkIfDevicesFound(this.devices);
+    // this.setUserPreference(tenantID, selectedPlantID);
+    // this.userListSelection = { 'tenantID': tenantID, 'plantID': selectedPlantID };
+  }
+
+  generateMachinesNames(plantID) {
+    const machinesList = this.machinesMiniList.filter(machine => machine.plantID === plantID)
+    this.machinesNamesList = machinesList;
   }
 
   onMachineSelection() {
-    const selectedMachine = this.machineSelected;
-    const selectedMachineID = selectedMachine.id;
-    const tenantID = this.tenantSelected.id;
-    const plantID = this.plantSelected.id;
-    console.log(selectedMachineID);
-    console.log(this.equipmentsMiniList);
-    console.log(this.machinesNamesList);
-    const equipmentsList = this.equipmentsMiniList.filter(equipment => equipment.machineID === selectedMachineID)
-    console.log(equipmentsList);
-    this.equipmentsNamesList = equipmentsList;
+    const selectedMachineID = this.machineSelected;
+    const tenantID = this.tenantSelected;
+    const plantID = this.plantSelected;
+    this.generateMachinesNames(selectedMachineID);
     this.devices = this.mainDevicesList.filter(device => device.tenant_id === tenantID &&
       device.plant_id === plantID &&
       device.machine_id === selectedMachineID);
-    this.userListSelection = { 'tenantID': tenantID, 'plantID': plantID, 'machineID': selectedMachineID };
+    this.checkIfDevicesFound(this.devices);
+    // this.setUserPreference(tenantID, plantID, selectedMachineID);
+    // this.userListSelection = { 'tenantID': tenantID, 'plantID': plantID, 'machineID': selectedMachineID };
   }
+
+  generateEquipmentsNames(machineID) {
+    const equipmentsList = this.equipmentsMiniList.filter(equipment => equipment.machineID === machineID)
+    this.equipmentsNamesList = equipmentsList;
+  }
+
+  checkIfDevicesFound(obj) {
+    if (obj.length < 1) {
+      this.noDevicesFound = true;
+    } else {
+      this.noDevicesFound = false;
+    }
+  }
+
+  // setUserPreference(tenantID, plantID?, machineID?, equipmentID?) {
+  //   const preference = {
+  //     tenantID: tenantID,
+  //     plantID: plantID,
+  //     machineID: machineID,
+  //     equipmentID: equipmentID
+  //   }
+  //   const preferenceString = JSON.stringify(preference);
+  //   localStorage.setItem(this.preferenceVariable, preferenceString);
+  // }
 
   // public moveTo(screen) {
   //   this.changeScreen.emit(screen);
