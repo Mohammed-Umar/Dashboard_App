@@ -9,7 +9,9 @@ import { PlantsService } from '../plants.service';
 export class PlantsListComponent implements OnInit {
 
   @Output() changeScreen = new EventEmitter<any>();
+
   @Output() needToUpdate = new EventEmitter<any>();
+
   @Output() showDetails = new EventEmitter<any>();
 
   @Input() tenanteNamesList;
@@ -28,23 +30,64 @@ export class PlantsListComponent implements OnInit {
 
   public noPlantsFound = false;
 
+  public preferenceVariable = 'plants-user-preference';
+
   constructor(private service: PlantsService) { }
 
   ngOnInit() {
     this.service.getTenants();
     this.service.plantsList.subscribe(list => {
       this.mainPlantsList = list;
+      this.checkPreference();
     });
   }
 
+  checkPreference() {
+    const preference = localStorage.getItem(this.preferenceVariable);
+    const preferenceJson = JSON.parse(preference);
+    if (preferenceJson !== null) {
+      this.tenantSelected = preferenceJson.tenantID;
+      this.showPreference();
+    }
+  }
+
+  showPreference() {
+    const tenantID = this.tenantSelected;
+    if (tenantID !== undefined) {
+      this.onlyTenantPreSelected();
+    }
+  }
+
+  onlyTenantPreSelected() {
+    this.optionSelected()
+  }
+
   optionSelected() {
-    const tenantID = this.tenantSelected.id;
+    this.toggleTenantSelection();
+    const tenantID = this.tenantSelected;
     this.plants = this.mainPlantsList.filter( obj => obj.tenant_id === tenantID );
-    if (this.plants.length < 1) {
+    this.checkIfMachinesFound(this.plants);
+    this.setUserPreference(tenantID);
+  }
+
+  toggleTenantSelection() {
+    this.isTenantSelected = true;
+  }
+
+  checkIfMachinesFound(obj) {
+    if (obj.length < 1) {
       this.noPlantsFound = true;
     } else {
       this.noPlantsFound = false;
     }
+  }
+
+  setUserPreference(tenantID) {
+    const preference = {
+      tenantID: tenantID
+    }
+    const preferenceString = JSON.stringify(preference);
+    localStorage.setItem(this.preferenceVariable, preferenceString);
   }
 
   public moveTo(screen) {
@@ -61,8 +104,8 @@ export class PlantsListComponent implements OnInit {
     this.moveTo(screen);
   }
 
-  delete(screen, tenant) {
+  delete(screen, plant) {
     this.moveTo(screen);
-    this.service.delete(tenant.id);
+    this.service.delete(plant.id);
   }
 }
