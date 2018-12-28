@@ -8867,6 +8867,12 @@ button:focus {
   .card.card-rotate.bg-success .front,
   .card.card-rotate.bg-success .back {
     background: linear-gradient(60deg, #66bb6a, #43a047); }
+  .card .card-header-dark .card-icon,
+  .card .card-header-dark .card-text,
+  .card .card-header-dark:not(.card-header-icon):not(.card-header-text), .card.bg-dark,
+  .card.card-rotate.bg-dark .front,
+  .card.card-rotate.bg-dark .back {
+    background: linear-gradient(60deg, #161616, #0c0c0c); }
   .card .card-header-warning .card-icon,
   .card .card-header-warning .card-text,
   .card .card-header-warning:not(.card-header-icon):not(.card-header-text), .card.bg-warning,

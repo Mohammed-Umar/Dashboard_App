@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
-        <div class="card-header card-header-danger">
+        <div class="card-header card-header-spaceGray">
           <div class="row">
             <div class="col-md-11">
             <h4 class="card-title">Tenant Details</h4>
@@ -37,9 +37,9 @@
               <div class="font-weight-light col-md-9">{{ device.description }}</div>
             </div>
             <div class="row">
-              <button mat-raised-button (click)="update('update')" class="col-md-2 btn btn-warning btn-round pull-right">Update</button>
-              <button mat-raised-button (click)="delete('list')" class="col-md-2 btn btn-danger btn-round pull-right">Delete</button>
-              <button mat-raised-button (click)="generateQR('qr-code', device.id)" class="col-md-3 btn btn-success btn-round">Generate QR CODE</button>
+              <button mat-raised-button (click)="update('update')" class="col-md-2 btn btn-brownGray btn-round pull-right">Update</button>
+              <button mat-raised-button (click)="delete('list')" class="col-md-2 btn btn-dark btn-round pull-right">Delete</button>
+              <button mat-raised-button (click)="generateQR('qr-code', device.id)" class="col-md-3 btn btn-spaceGray btn-round">Generate QR CODE</button>
             </div>
           </div>
         </div>

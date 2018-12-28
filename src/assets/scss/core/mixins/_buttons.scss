@@ -222,6 +222,21 @@
   &.btn-success {
     @include bmd-raised-button-variant($btn-success-color, $btn-success-bg, $btn-success-border-color);
   }
+  &.btn-tealGray {
+    @include bmd-raised-button-variant($btn-tealGray-color, $btn-tealGray-bg, $btn-tealGray-border-color);
+  }
+  &.btn-brownGray {
+    @include bmd-raised-button-variant($btn-brownGray-color, $btn-brownGray-bg, $btn-brownGray-border-color);
+  }
+  &.btn-blueGray {
+    @include bmd-raised-button-variant($btn-blueGray-color, $btn-blueGray-bg, $btn-blueGray-border-color);
+  }
+  &.btn-spaceGray {
+    @include bmd-raised-button-variant($btn-spaceGray-color, $btn-spaceGray-bg, $btn-spaceGray-border-color);
+  }
+  &.btn-dark {
+    @include bmd-raised-button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border-color);
+  }
   &.btn-warning {
     @include bmd-raised-button-variant($btn-warning-color, $btn-warning-bg, $btn-warning-border-color);
   }

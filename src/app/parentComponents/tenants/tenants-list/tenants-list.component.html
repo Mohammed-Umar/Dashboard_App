@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header card-header-success">
+          <div class="card-header card-header-spaceGray">
             <div class="row">
               <div class="col-md-10">
                   <h4 class="card-title ">Tenants List</h4>
@@ -15,7 +15,7 @@
           <div class="card-body">
             <div class="table-responsive">
               <table class="table">
-                <thead class=" text-primary">
+                <thead class=" text-dark">
                   <th *ngFor="let header of headers">
                     {{ header }}
                   </th>
@@ -35,17 +35,17 @@
                       {{ tenant.additional_info }}
                     </td> -->
                     <td>
-                      <a (click)="openDetails('details', tenant)" class="btn btn-dark btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                      <a (click)="openDetails('details', tenant)" class="btn btn-blueGray btn-round pull-right" style="color: #ffffff"> <!-- (click)="moveTo('update')" -->
                       Details                        
                       </a>
                     </td>
                     <td>
-                      <a (click)="update('update', tenant)" class="btn bg-dark btn-round pull-right" style="color: #ffffff"> <!-- (click)="moveTo('update')" -->
+                      <a (click)="update('update', tenant)" class="btn btn-brownGray btn-round pull-right" style="color: #ffffff"> <!-- (click)="moveTo('update')" -->
                       Update                        
                       </a>
                     </td>
                     <td>
-                      <a (click)="delete('list', tenant)" class="btn btn-danger btn-round pull-right">
+                      <a (click)="delete('list', tenant)" class="btn btn-dark btn-round pull-right" style="color: #ffffff">
                         <i class="material-icons">delete_outline</i>
                         DELETE
                       </a>

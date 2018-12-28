@@ -185,6 +185,46 @@
     &.card-rotate.bg-success .back{
       background: linear-gradient(60deg, $green-400, $green-600);
     }
+    .card-header-dark .card-icon,
+    .card-header-dark .card-text,
+    .card-header-dark:not(.card-header-icon):not(.card-header-text),
+    &.bg-dark,
+    &.card-rotate.bg-dark .front,
+    &.card-rotate.bg-dark .back{
+      background: linear-gradient(60deg, $dark-400, $dark-600);
+    }
+    .card-header-tealGray .card-icon,
+    .card-header-tealGray .card-text,
+    .card-header-tealGray:not(.card-header-icon):not(.card-header-text),
+    &.bg-tealGray,
+    &.card-rotate.bg-tealGray .front,
+    &.card-rotate.bg-tealGray .back{
+      background: linear-gradient(60deg, $tealGray-400, $tealGray-600);
+    }
+    .card-header-brownGray .card-icon,
+    .card-header-brownGray .card-text,
+    .card-header-brownGray:not(.card-header-icon):not(.card-header-text),
+    &.bg-brownGray,
+    &.card-rotate.bg-brownGray .front,
+    &.card-rotate.bg-brownGray .back{
+      background: linear-gradient(60deg, $brownGray-400, $brownGray-600);
+    }
+    .card-header-blueGray .card-icon,
+    .card-header-blueGray .card-text,
+    .card-header-blueGray:not(.card-header-icon):not(.card-header-text),
+    &.bg-blueGray,
+    &.card-rotate.bg-blueGray .front,
+    &.card-rotate.bg-blueGray .back{
+      background: linear-gradient(60deg, $blueGray-400, $blueGray-600);
+    }
+    .card-header-spaceGray .card-icon,
+    .card-header-spaceGray .card-text,
+    .card-header-spaceGray:not(.card-header-icon):not(.card-header-text),
+    &.bg-spaceGray,
+    &.card-rotate.bg-spaceGray .front,
+    &.card-rotate.bg-spaceGray .back{
+      background: linear-gradient(60deg, $spaceGray-400, $spaceGray-600);
+    }
     .card-header-warning .card-icon,
     .card-header-warning .card-text,
     .card-header-warning:not(.card-header-icon):not(.card-header-text),
@@ -247,6 +287,32 @@
     .card-header-success:not(.card-header-icon):not(.card-header-text),
     .card-header-success .card-text{
         @include shadow-big-color($brand-success);
+    }
+
+    .card-header-dark .card-icon,
+    .card-header-dark:not(.card-header-icon):not(.card-header-text),
+    .card-header-dark .card-text{
+        @include shadow-big-color($brand-dark);
+    }
+    .card-header-tealGray .card-icon,
+    .card-header-tealGray:not(.card-header-icon):not(.card-header-text),
+    .card-header-tealGray .card-text{
+        @include shadow-big-color($brand-tealGray);
+    }
+    .card-header-brownGray .card-icon,
+    .card-header-brownGray:not(.card-header-icon):not(.card-header-text),
+    .card-header-brownGray .card-text{
+        @include shadow-big-color($brand-brownGray);
+    }
+    .card-header-blueGray .card-icon,
+    .card-header-blueGray:not(.card-header-icon):not(.card-header-text),
+    .card-header-blueGray .card-text{
+        @include shadow-big-color($brand-blueGray);
+    }
+    .card-header-spaceGray .card-icon,
+    .card-header-spaceGray:not(.card-header-icon):not(.card-header-text),
+    .card-header-spaceGray .card-text{
+        @include shadow-big-color($brand-spaceGray);
     }
 
     [class*="card-header-"],

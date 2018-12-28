@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header card-header-danger">
+            <div class="card-header card-header-spaceGray">
               <div class="row">
                 <div class="col-md-10">
                     <!-- <h4 class="card-title ">Machines List</h4> -->
@@ -33,13 +33,13 @@
                     </div>
                   </div>
                 </div>
-              <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-success pull-right">Add New</button>
+              <button mat-raised-button (click)="moveTo('new')" type="submit" class="btn btn-secondary pull-right">Add New</button>
               </div>
             </div>
             <div class="card-body" *ngIf="isTenantSelected && !noMachinesFound">
               <div class="table-responsive">
                 <table class="table">
-                  <thead class=" text-primary">
+                  <thead class=" text-dark">
                     <th *ngFor="let header of headers">
                       {{ header }}
                     </th>
@@ -56,17 +56,17 @@
                         {{  machine.description }}
                       </td>
                       <td>
-                        <a (click)="openDetails('details', machine)" class="btn btn-primary btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        <a (click)="openDetails('details', machine)" class="btn btn-blueGray btn-round pull-right" style="color: #ffffff"> <!-- (click)="moveTo('update')" -->
                         Details                        
                         </a>
                       </td>
                       <td>
-                        <a (click)="update('update', machine)" class="btn btn-warning btn-round pull-right"> <!-- (click)="moveTo('update')" -->
+                        <a (click)="update('update', machine)" class="btn btn-brownGray btn-round pull-right" style="color: #ffffff"> <!-- (click)="moveTo('update')" -->
                         Update                        
                         </a>
                       </td>
                       <td>
-                        <a (click)="delete('list', machine)" class="btn btn-danger btn-round pull-right">
+                        <a (click)="delete('list', machine)" class="btn btn-dark btn-round pull-right" style="color: #ffffff">
                           <i class="material-icons">delete_outline</i>
                           DELETE
                         </a>
