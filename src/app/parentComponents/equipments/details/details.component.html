@@ -1,53 +1,69 @@
 <div class="main-content">
   <div class="container-fluid">
     <div class="card">
-        <div class="card-header card-header-spaceGray">
-          <div class="row">
-            <div class="col-md-11">
+      <div class="card-header card-header-spaceGray">
+        <div class="row">
+          <div class="col-md-11">
             <h4 class="card-title">Equipment Details</h4>
             <!-- <p class="card-category">All the fields must be filled</p> -->
-            </div>
-            <div class="col-md-1">
-              <a (click)="moveTo('list')">
-                <i class="material-icons pull-right">close</i>
-              </a>
-            </div>
           </div>
-            <!-- <h4 class="card-title">Tenant Details</h4> -->
-            <!-- <p class="card-category">Created using Roboto Font Family</p> -->
-        </div>
-        <div class="card-body">
-          <div id="typography">
-            <div class="card-title">
-              <h3>{{ equipment.name }}</h3>
-            </div>
-            <div class="row">
-              <div class="font-weight-bold col-md-2">ID</div>
-              <div class="font-weight-bold col-md-1">:</div>
-              <div class="font-weight-light col-md-9">{{ equipment.id }}</div>
-            </div>
-            <div class="row">
-              <div class="font-weight-bold col-md-2">Name</div>
-              <div class="font-weight-bold col-md-1">:</div>
-              <div class="font-weight-light col-md-9">{{ equipment.name }}</div>
-            </div>
-            <div class="row">
-              <div class="font-weight-bold col-md-2">Description</div>
-              <div class="font-weight-bold col-md-1">:</div>
-              <div class="font-weight-light col-md-9">{{ equipment.description }}</div>
-            </div>
-            <div class="row">
-              <div class="font-weight-bold col-md-2">Is Critical Equipment</div>
-              <div class="font-weight-bold col-md-1">:</div>
-              <div class="font-weight-light col-md-9">{{ equipment.is_critical }}</div>
-            </div>
-            <div class="row">
-              <button mat-raised-button (click)="update('update')" class="col-md-2 btn btn-brownGray btn-round pull-right">Update</button>
-              <button mat-raised-button (click)="delete('list')" class="col-md-2 btn btn-dark btn-round pull-right">Delete</button>
-              <button mat-raised-button (click)="generateQR('qr-code', equipment.id)" class="col-md-2 btn btn-spaceGray btn-round pull-right">Generate QR CODE</button>
-            </div>
+          <div class="col-md-1">
+            <a (click)="moveTo('list')">
+              <i class="material-icons pull-right">close</i>
+            </a>
           </div>
         </div>
+        <!-- <h4 class="card-title">Tenant Details</h4> -->
+        <!-- <p class="card-category">Created using Roboto Font Family</p> -->
+      </div>
+      <div class="card-body">
+        <div id="typography">
+          <div class="card-title">
+            <h3>{{ equipment.name }}</h3>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment ID</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.id }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment Name</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.name }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment Description</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.description }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Is Critical Equipment</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.is_critical }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment Capacity</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.capacity }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment Rated-RPM</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.rated_rpm }}</div>
+          </div>
+          <div class="row">
+            <div class="font-weight-bold col-md-3">Equipment Poles</div>
+            <div class="font-weight-bold col-md-1">:</div>
+            <div class="font-weight-light col-md-8">{{ equipment.poles }}</div>
+          </div>
+          <div class="row">
+            <button mat-raised-button (click)="update('update')" class="col-md-2 btn btn-brownGray btn-round pull-right">Update</button>
+            <button mat-raised-button (click)="delete('list')" class="col-md-2 btn btn-dark btn-round pull-right">Delete</button>
+            <button mat-raised-button (click)="generateQR('qr-code', equipment.id)" class="col-md-3 btn btn-spaceGray btn-round pull-right">Generate
+              QR CODE</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

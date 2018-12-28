@@ -46,11 +46,11 @@ export class AddNewEquipmentComponent implements OnInit {
 
   isCriticalFormControl: FormControl = new FormControl();
 
-  capacityFormControl: FormControl = new FormControl();
+  capacityFormControl: FormControl = new FormControl('', Validators.required);
 
-  rpmFormControl: FormControl = new FormControl();
+  rpmFormControl: FormControl = new FormControl('', Validators.required);
 
-  polesFormControl: FormControl = new FormControl();
+  polesFormControl: FormControl = new FormControl('', Validators.required);
 
   addNewForm: FormGroup = new FormGroup({
     name: this.nameFormControl,
@@ -76,10 +76,18 @@ export class AddNewEquipmentComponent implements OnInit {
   }
 
   public addEquipment(obj) {
+    const data = this.bindData(obj);
+    this.service.createTenant(data, this.tenantSelected, this.plantSelected, this.machineSelected);
+  }
+
+  bindData(obj) {
     obj.is_critical = this.isCriticalFormControl.value;
     obj.name = this.nameFormControl.value;
     obj.description = this.descriptionFormControl.value;
-    this.service.createTenant(obj, this.tenantSelected, this.plantSelected, this.machineSelected);
+    obj.capacity = this.capacityFormControl.value;
+    obj.rpm = this.rpmFormControl.value;
+    obj.poles = this.polesFormControl.value;
+    return obj;
   }
 
   onSubmit() {

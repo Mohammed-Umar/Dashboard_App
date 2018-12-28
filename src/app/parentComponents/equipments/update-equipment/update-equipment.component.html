@@ -59,17 +59,17 @@
                   </div>
                   <div class="col-md-3">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Equipment Capacity" type="text" name="Capacity" [formControl]="capacityFormControl">
+                      <input matInput placeholder="Equipment Capacity" type="text" name="Capacity" value={{equipment.capacity}} [formControl]="capacityFormControl" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-2">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Equipment RPM" type="text" name="RPM" [formControl]="rpmFormControl">
+                      <input matInput placeholder="Equipment Rated-RPM" type="text" name="RPM" value={{equipment.rated_rpm}} [formControl]="rpmFormControl" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-3">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Equipment Poles" type="text" name="Poles" [formControl]="polesFormControl">
+                      <input matInput placeholder="Equipment Poles" type="text" name="Poles" value={{equipment.poles}} [formControl]="polesFormControl" required>
                     </mat-form-field>
                   </div>
                   <div class="col-md-12">

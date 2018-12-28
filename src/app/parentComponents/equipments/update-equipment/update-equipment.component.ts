@@ -40,11 +40,11 @@ export class UpdateEquipmentComponent implements OnInit, OnChanges {
 
   isCriticalFormControl: FormControl = new FormControl();
 
-  capacityFormControl: FormControl = new FormControl();
+  capacityFormControl: FormControl = new FormControl('', Validators.required);
 
-  rpmFormControl: FormControl = new FormControl();
+  rpmFormControl: FormControl = new FormControl('', Validators.required);
 
-  polesFormControl: FormControl = new FormControl();
+  polesFormControl: FormControl = new FormControl('', Validators.required);
 
   addNewForm: FormGroup = new FormGroup({
     name: this.nameFormControl,
@@ -67,8 +67,15 @@ export class UpdateEquipmentComponent implements OnInit, OnChanges {
     this.plantSelected = this.equipment.plant_id;
     this.machineSelected = this.equipment.machine_id;
     this.isCritical = this.equipment.is_critical;
-    this.nameFormControl.patchValue(this.equipment.name);
-    this.descriptionFormControl.patchValue(this.equipment.description);
+    this.patchValues(this.equipment);
+  }
+
+  patchValues(equipment) {
+    this.nameFormControl.patchValue(equipment.name);
+    this.descriptionFormControl.patchValue(equipment.description);
+    this.capacityFormControl.patchValue(equipment.capacity);
+    this.rpmFormControl.patchValue(equipment.rated_rpm);
+    this.polesFormControl.patchValue(equipment.poles);
   }
 
   public moveTo(screen) {
@@ -76,10 +83,18 @@ export class UpdateEquipmentComponent implements OnInit, OnChanges {
   }
 
   private _update(obj) {
+    const data = this.bindData(obj);
+    this.service.update(data, this.tenantSelected, this.plantSelected, this.machineSelected);
+   }
+
+   bindData(obj) {
     obj.name = this.nameFormControl.value;
     obj.description = this.descriptionFormControl.value;
     obj.is_critical = this.isCriticalFormControl.value;
-    this.service.update(obj, this.tenantSelected, this.plantSelected, this.machineSelected);
+    obj.capacity = this.capacityFormControl.value;
+    obj.rpm = this.rpmFormControl.value;
+    obj.poles = this.polesFormControl.value;
+    return obj;
    }
 
   public onSubmit() {

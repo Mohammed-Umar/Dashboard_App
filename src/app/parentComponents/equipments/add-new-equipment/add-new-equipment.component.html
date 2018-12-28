@@ -55,30 +55,39 @@
                       <input matInput type="text" placeholder="Equipment Name" name="Name" [formControl]="nameFormControl" required>
                     </mat-form-field>
                     <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
-                      This field must be filled & must be of length more than 4
+                      This field must be filled & must be of length more than 4.
                     </mat-error>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Capacity" type="text" name="Capacity" [formControl]="capacityFormControl">
+                      <input matInput placeholder="Equipment Capacity" type="text" name="Capacity" [formControl]="capacityFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+                        This field must be filled.
+                    </mat-error>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="RPM" type="text" name="RPM" [formControl]="rpmFormControl">
+                      <input matInput placeholder="Equipment Rated-RPM" type="text" name="RPM" [formControl]="rpmFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+                        This field must be filled.
+                    </mat-error>
                   </div>
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <mat-form-field class="example-full-width">
-                      <input matInput placeholder="Poles" type="text" name="Poles" [formControl]="polesFormControl">
+                      <input matInput placeholder="Equipment Poles" type="text" name="Poles" [formControl]="polesFormControl" required>
                     </mat-form-field>
+                    <mat-error *ngIf="nameFormControl.invalid && (nameFormControl.dirty || nameFormControl.touched)">
+                        This field must be filled.
+                    </mat-error>
                   </div>
-                  <div class="col-md-12">
+                  <div class="col-md-9">
                     <mat-form-field class="example-full-width">
                       <input matInput type="text" placeholder="Equipment Description" name="Description" [formControl]="descriptionFormControl" required>
                     </mat-form-field>
                     <mat-error *ngIf="descriptionFormControl.invalid && (descriptionFormControl.dirty || descriptionFormControl.touched)">
-                      This field must be filled & must be of length more than 4
+                      This field must be filled & must be of length more than 4.
                     </mat-error>
                   </div>
                 </div>

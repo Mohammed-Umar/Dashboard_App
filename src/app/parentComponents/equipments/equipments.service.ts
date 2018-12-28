@@ -106,7 +106,10 @@ export class EquipmentsService {
       'plant_id': data.plant_id,
       'machine_id': data.machine_id,
       'equipment_type': null,
-      'is_critical': data.is_critical
+      'is_critical': data.is_critical,
+      'capacity': data.capacity,
+      'rated_rpm': data.rpm,
+      'poles': data.poles
     }
   }
 
