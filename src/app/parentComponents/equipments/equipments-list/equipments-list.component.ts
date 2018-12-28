@@ -64,14 +64,11 @@ export class EquipmentsListComponent implements OnInit {
   checkPreference() {
     const preference = localStorage.getItem(this.preferenceVariable);
     const preferenceJson = JSON.parse(preference);
-    console.log(preferenceJson);
     if (preferenceJson !== null) {
       this.tenantSelected = preferenceJson.tenantID;
       this.plantSelected = preferenceJson.plantID;
       this.machineSelected = preferenceJson.machineID;
       this.showPreference();
-      console.log(this.plantSelected);
-      console.log(this.machineSelected);
     }
   }
 

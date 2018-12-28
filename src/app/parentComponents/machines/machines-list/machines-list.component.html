@@ -16,7 +16,7 @@
                     <div class="col-md-3">
                       <mat-form-field>
                         <mat-select [(value)]="tenantSelected" placeholder="Tenant Names">
-                          <mat-option *ngFor="let names of tenanteNamesList" (click)="onTenantSelection()" [value]="names">
+                          <mat-option *ngFor="let names of tenanteNamesList" (click)="onTenantSelection()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>
@@ -25,7 +25,7 @@
                     <div class="col-md-3">
                       <mat-form-field>
                         <mat-select [(value)]="plantSelected" placeholder="Plant Names">
-                          <mat-option *ngFor="let names of plantsNamesList" (click)="optionsSelected()" [value]="names">
+                          <mat-option *ngFor="let names of plantsNamesList" (click)="optionsSelected()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
                         </mat-select>

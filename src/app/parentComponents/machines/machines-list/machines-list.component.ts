@@ -37,14 +37,47 @@ export class MachinesListComponent implements OnInit {
 
   public noMachinesFound = false;
 
+  public preferenceVariable = 'machines-user-preference';
+
   constructor(private service: MachinesService) { }
 
   ngOnInit() {
     this.service.getTenants();
     this.service.machinesList.subscribe(list => {
       this.mainMachinesList = list;
-      this.checkPreSelection();
+      this.checkPreference();
+      // this.checkPreSelection();
     });
+  }
+
+  checkPreference() {
+    const preference = localStorage.getItem(this.preferenceVariable);
+    const preferenceJson = JSON.parse(preference);
+    if (preferenceJson !== null) {
+      this.tenantSelected = preferenceJson.tenantID;
+      this.plantSelected = preferenceJson.plantID;
+      this.showPreference();
+    }
+  }
+
+  showPreference() {
+    const tenantID = this.tenantSelected;
+    const plantID = this.plantSelected;
+    if (tenantID !== undefined && plantID !== undefined) {
+      this.teanatAndPlantPreSelected(tenantID);
+    } else if (tenantID !== undefined) {
+      this.onlyTenantPreSelected();
+    }
+  }
+
+  onlyTenantPreSelected() {
+    this.onTenantSelection()
+  }
+
+  teanatAndPlantPreSelected(tenantID, ) {
+    this.toggleTenantSelection();
+    this.generatePlantsNames(tenantID);
+    this.optionsSelected();
   }
 
   checkPreSelection() {
@@ -59,21 +92,30 @@ export class MachinesListComponent implements OnInit {
   }
 
   optionsSelected() {
-    const tenantID = this.tenantSelected.id;
-    const plantID = this.plantSelected.id;
+    const tenantID = this.tenantSelected;
+    const plantID = this.plantSelected;
     this.machines = this.mainMachinesList.filter( obj => obj.tenant_id === tenantID && obj.plant_id === plantID);
     this.checkIfMachinesFound(this.machines);
+    this.setUserPreference(tenantID, plantID);
     this.userListSelection = { 'tenantID': this.tenantSelected.id, 'plantID': this.plantSelected.id };
   }
 
   onTenantSelection() {
-    this.isTenantSelected = true;
-    const selectedTenant = this.tenantSelected;
-    const selectedTenantID = selectedTenant.id;
-    const plantsList = this.plantsMiniList.filter( plant => plant.tenantID === selectedTenantID)
-    this.plantsNamesList = plantsList;
+    this.toggleTenantSelection();
+    const selectedTenantID = this.tenantSelected;
+    this.generatePlantsNames(selectedTenantID);
     this.machines = this.mainMachinesList.filter(machine => machine.tenant_id === selectedTenantID);
     this.checkIfMachinesFound(this.machines);
+    this.setUserPreference(selectedTenantID);
+  }
+
+  toggleTenantSelection() {
+    this.isTenantSelected = true;
+  }
+
+  generatePlantsNames(tenantID) {
+    const plantsList = this.plantsMiniList.filter(plant => plant.tenantID === tenantID)
+    this.plantsNamesList = plantsList;
   }
 
   generateFilteredMachines(tenantID, plantID) {
@@ -91,6 +133,15 @@ export class MachinesListComponent implements OnInit {
     }
   }
 
+  setUserPreference(tenantID, plantID?) {
+    const preference = {
+      tenantID: tenantID,
+      plantID: plantID
+    }
+    const preferenceString = JSON.stringify(preference);
+    localStorage.setItem(this.preferenceVariable, preferenceString);
+  }
+
   public moveTo(screen) {
     const obj = { 'screen': screen, 'userListSelection': this.userListSelection };
     this.changeScreen.emit(obj);
@@ -106,8 +157,8 @@ export class MachinesListComponent implements OnInit {
     this.moveTo(screen);
   }
 
-  delete(screen, tenant) {
+  delete(screen, machine) {
     this.moveTo(screen);
-    this.service.delete(tenant.id);
+    this.service.delete(machine.id);
   }
 }
