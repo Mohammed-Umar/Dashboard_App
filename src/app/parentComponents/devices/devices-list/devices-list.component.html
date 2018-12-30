@@ -20,7 +20,7 @@
                       <h4 class="card-title ">Devices List</h4>
                     </div>
                     <div class="col-md-2">
-                      <mat-form-field>
+                      <mat-form-field color="warn">
                         <mat-select [(value)]="tenantSelected" placeholder="Tenant Names">
                           <mat-option *ngFor="let names of tenantsNamesList" (click)="onTenantSelection()" [value]="names.id">
                             {{names.name}}
@@ -29,7 +29,7 @@
                       </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                      <mat-form-field>
+                      <mat-form-field color="warn">
                         <mat-select [(value)]="plantSelected" placeholder="Plant Names">
                           <mat-option *ngFor="let names of plantsNamesList" (click)="onPlantSelection()" [value]="names.id">
                             {{names.name}}
@@ -38,7 +38,7 @@
                       </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                      <mat-form-field>
+                      <mat-form-field color="warn">
                         <mat-select [(value)]="machineSelected" placeholder="Machine Names">
                           <mat-option *ngFor="let names of machinesNamesList" (click)="onMachineSelection()" [value]="names.id">
                             {{names.name}}
@@ -47,7 +47,7 @@
                       </mat-form-field>
                     </div>
                     <div class="col-md-2">
-                      <mat-form-field>
+                      <mat-form-field color="warn">
                         <mat-select [(value)]="equipmentSelected" placeholder="Equipment Names">
                           <mat-option *ngFor="let names of equipmentsNamesList" (click)="optionsSelected()" [value]="names.id">
                             {{names.name}}

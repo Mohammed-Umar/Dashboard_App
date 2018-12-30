@@ -11,8 +11,8 @@
                       <h4 class="card-title ">Plants List</h4>
                     </div>
                     <div class="col-md-3">
-                      <mat-form-field>
-                        <mat-select [(value)]="tenantSelected" placeholder="Tenant Name">
+                      <mat-form-field color="warn">
+                        <mat-select [(value)]="tenantSelected" placeholder="Tenant Name" style="color: #ffffff">
                           <mat-option *ngFor="let names of tenanteNamesList" (click)="optionSelected()" [value]="names.id">
                             {{names.name}}
                           </mat-option>
