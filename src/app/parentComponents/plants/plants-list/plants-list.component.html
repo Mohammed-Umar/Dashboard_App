@@ -11,7 +11,7 @@
                       <h4 class="card-title ">Plants List</h4>
                     </div>
                     <div class="col-md-3">
-                      <mat-form-field color="warn">
+                      <mat-form-field color="primary">
                         <mat-select [(value)]="tenantSelected" placeholder="Tenant Name" style="color: #ffffff">
                           <mat-option *ngFor="let names of tenanteNamesList" (click)="optionSelected()" [value]="names.id">
                             {{names.name}}
@@ -55,7 +55,7 @@
                         </a>
                       </td>
                       <td>
-                        <a (click)="delete('list', plant)" class="btn btn-dark btn-round pull-right" style="color: #ffffff">
+                        <a (click)="delete('list', plant)" class="btn btn-tealGray btn-round pull-right" style="color: #ffffff">
                           <i class="material-icons">delete_outline</i>
                           DELETE
                         </a>
