@@ -18,7 +18,7 @@ export class SharedService {
 
   // readonly guidUrl = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/resource?'
 
-  readonly url = 'https://o3odkpsbce.execute-api.us-east-2.amazonaws.com/dev/';
+  readonly url = 'https://o3odkpsbce.execute-api.us-east-2.amazonaws.com/dev/v2/';
 
   readonly guidUrl = this.url + 'resource?';
 

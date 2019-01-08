@@ -13,6 +13,13 @@ import { AddNewComponent } from '../../childComponents/addnew/addnew.component';
 import { UpdateComponent } from '../../childComponents/update/update.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: 'tenants',          component: TenantsComponent, canActivate: [AuthGuard]},
+    { path: 'plants',           component: PlantsComponent },
+    { path: 'machines',         component: MachinesComponent },
+    { path: 'equipments',       component: EquipmentsComponent },
+    { path: 'devices',          component: DevicesComponent },
+    { path: 'users',            component: UsersComponent },
+    { path: 'notifications',    component: NotificationsComponent },
     // {
     //   path: '',
     //   children: [ {
@@ -59,11 +66,4 @@ export const AdminLayoutRoutes: Routes = [
     //     { path: 'new', component: AddNewComponent},
     //     { path: 'update', component: UpdateComponent}
     // ]},
-    { path: 'tenants',          component: TenantsComponent, canActivate: [AuthGuard]},
-    { path: 'plants',           component: PlantsComponent },
-    { path: 'machines',         component: MachinesComponent },
-    { path: 'equipments',       component: EquipmentsComponent },
-    { path: 'devices',          component: DevicesComponent },
-    { path: 'users',            component: UsersComponent },
-    { path: 'notifications',    component: NotificationsComponent },
 ];
