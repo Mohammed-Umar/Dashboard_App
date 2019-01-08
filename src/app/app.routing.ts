@@ -4,6 +4,10 @@ import { BrowserModule  } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth.guard';
+
 import { TenantsComponent } from './parentComponents/tenants/tenant.component';
 import { PlantsComponent } from './parentComponents/plants/plants.component';
 import { MachinesComponent } from './parentComponents/machines/machines.component';
@@ -12,24 +16,37 @@ import { DevicesComponent } from './parentComponents/devices/devices.component';
 import { UsersComponent } from './parentComponents/users/users.component';
 import { NotificationsComponent } from './parentComponents/notifications/notifications.component';
 
-
-import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
-
 const routes: Routes = [
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {
     path: '',
     redirectTo: 'tenants',
     pathMatch: 'full',
   },
-  { path: '', component: AdminLayoutComponent, children: [
-    { path: 'tenants', component: TenantsComponent},
-    { path: 'plants',     component: PlantsComponent },
-    { path: 'machines',     component: MachinesComponent },
-    { path: 'equipments',          component: EquipmentsComponent },
-    { path: 'devices',           component: DevicesComponent },
-    { path: 'users',   component: UsersComponent },
-    { path: 'notifications',  component: NotificationsComponent },
-  ]}
+  {
+    path: '',
+    component: AdminLayoutComponent,
+    children: [
+        {
+      path: '',
+      loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+  }],
+  }
+  // {
+  //   path: '',
+  //   redirectTo: 'tenants',
+  //   pathMatch: 'full',
+  // },
+  // { path: '', component: AdminLayoutComponent, children: [
+  //   { path: 'tenants', component: TenantsComponent},
+  //   { path: 'plants',     component: PlantsComponent },
+  //   { path: 'machines',     component: MachinesComponent },
+  //   { path: 'equipments',          component: EquipmentsComponent },
+  //   { path: 'devices',           component: DevicesComponent },
+  //   { path: 'users',   component: UsersComponent },
+  //   { path: 'notifications',  component: NotificationsComponent },
+  // ]}
     // { path: 'dashboard',      component: TenantsComponent },
     // { path: 'user-profile',   component: UsersComponent },
     // { path: 'table-list',     component: PlantsComponent },
@@ -38,6 +55,7 @@ const routes: Routes = [
     // { path: 'notifications',  component: NotificationsComponent },
     // { path: '',               redirectTo: 'dashboard', pathMatch: 'full' }
 ];
+
 
 @NgModule({
   imports: [

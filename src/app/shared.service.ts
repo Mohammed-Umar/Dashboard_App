@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { read } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +14,13 @@ export class SharedService {
    * This URL is same for both GET & POST
    * Just we have to add the items name in end like 'tenants' or 'plants'
    */
-  readonly url = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/';
+  // readonly url = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/';
 
-  readonly guidUrl = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/resource?'
+  // readonly guidUrl = 'https://vruq5qaho6.execute-api.us-east-2.amazonaws.com/dev2/v2/resource?'
+
+  readonly url = 'https://o3odkpsbce.execute-api.us-east-2.amazonaws.com/dev/';
+
+  readonly guidUrl = this.url + 'resource?';
 
   // urlGuid = 'id=95&type=equipment';
 

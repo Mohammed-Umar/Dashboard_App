@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http'
 import { RouterModule } from '@angular/router';
@@ -8,19 +8,21 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app.routing';
 import { ComponentsModule } from './components/components.module';
-import { DevicesModule } from './parentComponents/devices/devices.module';
-import { EquipmentsModule } from './parentComponents/equipments/equipments.module';
-import { MachinesModule } from './parentComponents/machines/machines.module';
-import { NotificationsModule } from './parentComponents/notifications/notifications.module';
-import { PlantsModule } from './parentComponents/plants/plants.module';
-import { TenantModule } from './parentComponents/tenants/tenant.module';
-import { UsersModule } from './parentComponents/users/users.module';
+// import { DevicesModule } from './parentComponents/devices/devices.module';
+// import { EquipmentsModule } from './parentComponents/equipments/equipments.module';
+// import { MachinesModule } from './parentComponents/machines/machines.module';
+// import { NotificationsModule } from './parentComponents/notifications/notifications.module';
+// import { PlantsModule } from './parentComponents/plants/plants.module';
+// import { TenantModule } from './parentComponents/tenants/tenant.module';
+// import { UsersModule } from './parentComponents/users/users.module';
 import { AdminLayoutModule } from './layouts/admin-layout/admin-layout.module';
-
-// import { QRCodeModule } from 'angularx-qrcode';
+import { AmplifyAngularModule, AmplifyService } from 'aws-amplify-angular';
 
 import { AppComponent } from './app.component';
 import { SharedService } from './shared.service';
+import { AuthorizationService } from './authorization.service';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 import { TenantsComponent } from './parentComponents/tenants/tenant.component';
 import { UsersComponent } from './parentComponents/users/users.component';
@@ -33,32 +35,47 @@ import {
 } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
+import {
+  MatButtonModule,
+  MatInputModule,
+  MatRippleModule,
+  MatFormFieldModule,
+  MatTooltipModule,
+  MatSelectModule
+} from '@angular/material';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     HttpClientModule,
-    // QRCodeModule,
     ComponentsModule,
-    DevicesModule,
-    EquipmentsModule,
-    MachinesModule,
-    NotificationsModule,
-    PlantsModule,
-    TenantModule,
-    UsersModule,
+    // DevicesModule,
+    // EquipmentsModule,
+    // MachinesModule,
+    // NotificationsModule,
+    // PlantsModule,
+    // TenantModule,
+    // UsersModule,
+    AmplifyAngularModule,
     AdminLayoutModule,
     RouterModule,
     AppRoutingModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'YOUR_GOOGLE_MAPS_API_KEY'
-    })
+    MatButtonModule,
+    MatInputModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatTooltipModule,
+    MatSelectModule
   ],
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegisterComponent
   ],
-  providers: [SharedService],
+  providers: [SharedService, AmplifyService, AuthorizationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
