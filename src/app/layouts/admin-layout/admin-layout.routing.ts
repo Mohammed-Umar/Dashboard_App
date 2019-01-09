@@ -11,15 +11,24 @@ import { NotificationsComponent } from '../../parentComponents/notifications/not
 import { ListComponent } from '../../childComponents/list/list.component';
 import { AddNewComponent } from '../../childComponents/addnew/addnew.component';
 import { UpdateComponent } from '../../childComponents/update/update.component';
+import { AdminLayoutComponent } from './admin-layout.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'tenants',          component: TenantsComponent, canActivate: [AuthGuard]},
-    { path: 'plants',           component: PlantsComponent },
-    { path: 'machines',         component: MachinesComponent },
-    { path: 'equipments',       component: EquipmentsComponent },
-    { path: 'devices',          component: DevicesComponent },
-    { path: 'users',            component: UsersComponent },
-    { path: 'notifications',    component: NotificationsComponent },
+    {
+        path: '',
+        redirectTo: 'admin/tenants',
+        pathMatch: 'full'
+    },
+    { path: 'admin', component: AdminLayoutComponent, children: [
+        { path: 'tenants',          component: TenantsComponent, canActivate: [AuthGuard]},
+        { path: 'plants',           component: PlantsComponent },
+        { path: 'machines',         component: MachinesComponent },
+        { path: 'equipments',       component: EquipmentsComponent },
+        { path: 'devices',          component: DevicesComponent },
+        { path: 'users',            component: UsersComponent },
+        { path: 'notifications',    component: NotificationsComponent }
+    ]}
+
     // {
     //   path: '',
     //   children: [ {

@@ -21,15 +21,15 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {
     path: '',
-    redirectTo: 'tenants',
+    redirectTo: 'admin',
     pathMatch: 'full',
   },
   {
-    path: '',
+    path: 'admin',
     component: AdminLayoutComponent,
     children: [
         {
-      path: '',
+      path: 'admin',
       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
   }],
   }
